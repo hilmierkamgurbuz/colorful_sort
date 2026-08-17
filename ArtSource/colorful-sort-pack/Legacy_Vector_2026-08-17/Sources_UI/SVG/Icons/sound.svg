@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none" shape-rendering="geometricPrecision">
+  <title>sound</title>
+  <desc>Text-free editable UI master with a transparent canvas.</desc>
+  <!-- Locked palette: purple #7259FF, outline #4237A1, shadow #2A1D65, yellow #FEC901, orange #F08A00, green #00D44C, green_bevel #00A936, red #FE3C00, red_bevel #C91A13, lavender #9A99FF, cream #FFF6D6 -->
+  <g id="artwork" stroke-linejoin="round">
+    <polygon id="speaker_outline" points="28,77 57,77 96,43 96,145 57,111 28,111" fill="#4237A1" stroke-linejoin="round"/>
+    <polygon id="speaker" points="39,86 63,86 84,68 84,120 63,102 39,102" fill="#FFF6D6" stroke-linejoin="round"/>
+    <path id="waves_outline" d="M 119 70 C 138 82 138 106 119 118 M 136 49 C 173 72 173 116 136 139" fill="none" stroke="#4237A1" stroke-width="27" stroke-linecap="round"/>
+    <path id="waves" d="M 119 70 C 138 82 138 106 119 118 M 136 49 C 173 72 173 116 136 139" fill="none" stroke="#FFF6D6" stroke-width="13" stroke-linecap="round"/>
+  </g>
+</svg>

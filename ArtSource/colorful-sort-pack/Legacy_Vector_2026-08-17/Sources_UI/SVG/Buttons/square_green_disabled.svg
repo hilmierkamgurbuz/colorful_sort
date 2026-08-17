@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="320" viewBox="0 0 320 320" fill="none" shape-rendering="geometricPrecision">
+  <title>square_green_disabled</title>
+  <desc>Text-free editable UI master with a transparent canvas.</desc>
+  <!-- Locked palette: purple #7259FF, outline #4237A1, shadow #2A1D65, yellow #FEC901, orange #F08A00, green #00D44C, green_bevel #00A936, red #FE3C00, red_bevel #C91A13, lavender #9A99FF, cream #FFF6D6 -->
+  <g id="artwork" stroke-linejoin="round">
+    <rect id="shadow" x="40" y="52" width="240" height="244" rx="66" fill="#2A1D65" opacity="0.95"/>
+    <rect id="outline" x="36" y="24" width="248" height="244" rx="66" fill="#4237A1"/>
+    <rect id="bevel" x="47" y="35" width="226" height="222" rx="55" fill="#7259FF" opacity="0.58"/>
+    <rect id="face" x="47" y="35" width="226" height="178" rx="55" fill="#9A99FF" opacity="0.58"/>
+  </g>
+</svg>

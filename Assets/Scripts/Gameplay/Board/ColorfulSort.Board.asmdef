@@ -1,0 +1,14 @@
+{
+    "name": "ColorfulSort.Board",
+    "rootNamespace": "ColorfulSort.Board",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": true
+}

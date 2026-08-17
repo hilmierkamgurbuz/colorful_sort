@@ -1,0 +1,275 @@
+{
+  "processor": "process_slot_complete_2cell_full_rerender_strict.py",
+  "strict_pipeline": true,
+  "active_overwrite_requested": true,
+  "normal": {
+    "raw_file": "slot_complete_2cell_full_rerender_raw.png",
+    "raw_sha256": "df7c230376ab9e5e1156a55e8ec38c407e0671a582207055ea4a8d553e479ad1",
+    "source_count": 1,
+    "source_role": "one complete built-in ImageGen render",
+    "extraction": {
+      "raw_mode": "RGB",
+      "raw_size": [
+        897,
+        1752
+      ],
+      "subject_bbox_raw_ltrb": [
+        174,
+        78,
+        724,
+        1684
+      ],
+      "subject_bbox_raw_wh": [
+        550,
+        1606
+      ],
+      "matte_rule": "(min_rgb < 222) OR (chroma > 22), largest connected component",
+      "edge_cleanup": "nearest same-raw interior RGB on partial-alpha boundary"
+    },
+    "raw_groove_centers_y": [
+      491.3102002759097,
+      1045.764846083797
+    ],
+    "raw_groove_spacing_px": 554.4546458078873,
+    "target_groove_spacing_px": 512.0,
+    "transform": {
+      "uniform_scale_x": 0.9234299033674299,
+      "uniform_scale_y": 0.9234299033674299,
+      "isotropic_scale_delta": 0.0,
+      "resized_subject_float_wh": [
+        507.88644685208646,
+        1483.0284248080925
+      ],
+      "pad_offsets_float_ltrb": [
+        66.05677657395677,
+        90.48578759595375,
+        66.05677657395677,
+        90.48578759595375
+      ],
+      "affine_forward_matrix": [
+        [
+          0.9234299033674299,
+          0.0,
+          66.05677657395677
+        ],
+        [
+          0.0,
+          0.9234299033674299,
+          90.48578759595375
+        ]
+      ]
+    },
+    "analytic_final_groove_centers_y": [
+      472.14878589751015,
+      984.1487858975102
+    ],
+    "analytic_final_groove_spacing_px": 512.0,
+    "detected_final_groove_centers_y": [
+      472.1200749672655,
+      984.1193161421411
+    ],
+    "detected_final_groove_spacing_px": 511.9992411748756,
+    "alpha": {
+      "mode": "RGBA",
+      "size": [
+        640,
+        1664
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "hidden_rgb_max": 0,
+      "alpha_components_gt8": 1
+    },
+    "continuity": {
+      "rows_checked": 1132,
+      "rail_missing_rows": 0,
+      "cavity_center_missing_rows": 0,
+      "left_outer_edge_range_px": 0,
+      "right_outer_edge_range_px": 1,
+      "left_outer_edge_p99_adjacent_step_px": 0.0,
+      "right_outer_edge_p99_adjacent_step_px": 0.0
+    },
+    "unity": {
+      "pixels_per_unit": 512,
+      "suggested_pivot": [
+        0.5,
+        0.0
+      ],
+      "sprite_mode": "Single",
+      "mesh_type": "Full Rect",
+      "sRGB": true,
+      "alpha_is_transparency": true,
+      "tiled_center_top_down": [
+        160,
+        320,
+        320,
+        512
+      ],
+      "tiled_border_lbrt": [
+        160,
+        832,
+        160,
+        320
+      ]
+    },
+    "operations_allowlist": [
+      "light/checker matte alpha cleanup",
+      "one complete-subject crop",
+      "one whole-render uniform isotropic affine scale",
+      "transparent canvas padding"
+    ],
+    "operations_forbidden_and_absent": [
+      "piecewise warp",
+      "regional resize",
+      "vertical spatial normalization",
+      "modular sprite input",
+      "artwork compositing",
+      "vector replacement"
+    ],
+    "draft_file": "GeneratedAssets/ImageGenDraft/Gameplay/slot_complete_2cell.png",
+    "draft_sha256": "485d44082a113debbb6caf982af936ac09339f220abba892ac3e2e9aeae435bd",
+    "active_file": "GeneratedAssets/Gameplay/slot_complete_2cell.png",
+    "active_sha256": "485d44082a113debbb6caf982af936ac09339f220abba892ac3e2e9aeae435bd"
+  },
+  "frozen": {
+    "raw_file": "slot_ice_complete_2cell_full_rerender_raw.png",
+    "raw_sha256": "d17b364c13a5178b7422ea83e2f9ab661947ab5bde71b3f9502f8ede49ef5472",
+    "source_count": 1,
+    "source_role": "one complete built-in ImageGen render",
+    "extraction": {
+      "raw_mode": "RGB",
+      "raw_size": [
+        867,
+        1814
+      ],
+      "subject_bbox_raw_ltrb": [
+        204,
+        54,
+        663,
+        1767
+      ],
+      "subject_bbox_raw_wh": [
+        459,
+        1713
+      ],
+      "matte_rule": "(min_rgb < 222) OR (chroma > 22), largest connected component",
+      "edge_cleanup": "nearest same-raw interior RGB on partial-alpha boundary"
+    },
+    "raw_groove_centers_y": [
+      450.878918278612,
+      921.3506011541117
+    ],
+    "raw_groove_spacing_px": 470.4716828754997,
+    "target_groove_spacing_px": 512.0,
+    "transform": {
+      "uniform_scale_x": 1.0882695359488614,
+      "uniform_scale_y": 1.0882695359488614,
+      "isotropic_scale_delta": 0.0,
+      "resized_subject_float_wh": [
+        499.5157170005274,
+        1864.2057150803996
+      ],
+      "pad_offsets_float_ltrb": [
+        70.2421414997363,
+        59.89714245980019,
+        70.24214149973625,
+        59.89714245980008
+      ],
+      "affine_forward_matrix": [
+        [
+          1.0882695359488614,
+          0.0,
+          70.2421414997363
+        ],
+        [
+          0.0,
+          1.0882695359488614,
+          59.89714245980019
+        ]
+      ]
+    },
+    "analytic_final_groove_centers_y": [
+      491.80837868275137,
+      1003.8083786827514
+    ],
+    "analytic_final_groove_spacing_px": 512.0,
+    "detected_final_groove_centers_y": [
+      491.8749725156541,
+      1003.8532753809701
+    ],
+    "detected_final_groove_spacing_px": 511.978302865316,
+    "alpha": {
+      "mode": "RGBA",
+      "size": [
+        640,
+        1984
+      ],
+      "alpha_min": 0,
+      "alpha_max": 255,
+      "corner_alpha": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "hidden_rgb_max": 0,
+      "alpha_components_gt8": 1
+    },
+    "continuity": {
+      "rows_checked": 1242,
+      "rail_missing_rows": 0,
+      "cavity_center_missing_rows": 0,
+      "left_outer_edge_range_px": 0,
+      "right_outer_edge_range_px": 1,
+      "left_outer_edge_p99_adjacent_step_px": 0.0,
+      "right_outer_edge_p99_adjacent_step_px": 0.0
+    },
+    "unity": {
+      "pixels_per_unit": 512,
+      "suggested_pivot": [
+        0.5,
+        0.0
+      ],
+      "sprite_mode": "Single",
+      "mesh_type": "Full Rect",
+      "sRGB": true,
+      "alpha_is_transparency": true,
+      "tiled_center_top_down": [
+        160,
+        320,
+        320,
+        512
+      ],
+      "tiled_border_lbrt": [
+        160,
+        1152,
+        160,
+        320
+      ]
+    },
+    "operations_allowlist": [
+      "light/checker matte alpha cleanup",
+      "one complete-subject crop",
+      "one whole-render uniform isotropic affine scale",
+      "transparent canvas padding"
+    ],
+    "operations_forbidden_and_absent": [
+      "piecewise warp",
+      "regional resize",
+      "vertical spatial normalization",
+      "modular sprite input",
+      "artwork compositing",
+      "vector replacement"
+    ],
+    "draft_file": "GeneratedAssets/ImageGenDraft/Gameplay/slot_ice_complete_2cell.png",
+    "draft_sha256": "6396b3b249c9c075b1865090beda48c53e7afe846bd675c3e26291400444acb9",
+    "active_file": "GeneratedAssets/Gameplay/slot_ice_complete_2cell.png",
+    "active_sha256": "6396b3b249c9c075b1865090beda48c53e7afe846bd675c3e26291400444acb9"
+  }
+}

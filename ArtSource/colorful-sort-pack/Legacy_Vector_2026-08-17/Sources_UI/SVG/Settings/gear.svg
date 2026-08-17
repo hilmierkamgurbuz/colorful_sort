@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none" shape-rendering="geometricPrecision">
+  <title>gear</title>
+  <desc>Text-free editable UI master with a transparent canvas.</desc>
+  <!-- Locked palette: purple #7259FF, outline #4237A1, shadow #2A1D65, yellow #FEC901, orange #F08A00, green #00D44C, green_bevel #00A936, red #FE3C00, red_bevel #C91A13, lavender #9A99FF, cream #FFF6D6 -->
+  <g id="artwork" stroke-linejoin="round">
+    <path id="shadow" d="M 96 22 L 110.047 23.383 L 117.048 43.187 L 126.556 48.269 L 146.912 43.088 L 155.866 53.999 L 146.813 72.952 L 149.943 83.27 L 168 94 L 166.617 108.047 L 146.813 115.048 L 141.731 124.556 L 146.912 144.912 L 136.001 153.866 L 117.048 144.813 L 106.73 147.943 L 96 166 L 81.953 164.617 L 74.952 144.813 L 65.444 139.731 L 45.088 144.912 L 36.134 134.001 L 45.187 115.048 L 42.057 104.73 L 24 94 L 25.383 79.953 L 45.187 72.952 L 50.269 63.444 L 45.088 43.088 L 55.999 34.134 L 74.952 43.187 L 85.27 40.057 Z M 120 94 A 24 24 0 1 0 72 94 A 24 24 0 1 0 120 94 Z" fill="#2A1D65" opacity="0.9" fill-rule="evenodd"/>
+    <path id="gear" d="M 96 14 L 110.047 15.383 L 117.048 35.187 L 126.556 40.269 L 146.912 35.088 L 155.866 45.999 L 146.813 64.952 L 149.943 75.27 L 168 86 L 166.617 100.047 L 146.813 107.048 L 141.731 116.556 L 146.912 136.912 L 136.001 145.866 L 117.048 136.813 L 106.73 139.943 L 96 158 L 81.953 156.617 L 74.952 136.813 L 65.444 131.731 L 45.088 136.912 L 36.134 126.001 L 45.187 107.048 L 42.057 96.73 L 24 86 L 25.383 71.953 L 45.187 64.952 L 50.269 55.444 L 45.088 35.088 L 55.999 26.134 L 74.952 35.187 L 85.27 32.057 Z M 120 86 A 24 24 0 1 0 72 86 A 24 24 0 1 0 120 86 Z" fill="#FFF6D6" stroke="#4237A1" stroke-width="10" fill-rule="evenodd"/>
+    <path id="shine" d="M 63 52 C 76 40 93 37 108 41" fill="none" stroke="#FFF6D6" stroke-width="7" opacity="0.45" stroke-linecap="round"/>
+  </g>
+</svg>

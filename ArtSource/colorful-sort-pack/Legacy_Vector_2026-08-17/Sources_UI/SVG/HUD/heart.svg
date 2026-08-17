@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none" shape-rendering="geometricPrecision">
+  <title>heart</title>
+  <desc>Text-free editable UI master with a transparent canvas.</desc>
+  <!-- Locked palette: purple #7259FF, outline #4237A1, shadow #2A1D65, yellow #FEC901, orange #F08A00, green #00D44C, green_bevel #00A936, red #FE3C00, red_bevel #C91A13, lavender #9A99FF, cream #FFF6D6 -->
+  <g id="artwork" stroke-linejoin="round">
+    <path id="shadow" d="M 96 158 C 82 143 34 113 28 76 C 22 39 65 18 96 52 C 127 18 170 39 164 76 C 158 113 110 143 96 158 Z" fill="#2A1D65" opacity="0.95"/>
+    <path id="heart" d="M 96 149 C 82 135 42 108 36 76 C 31 48 65 33 96 66 C 127 33 161 48 156 76 C 150 108 110 135 96 149 Z" fill="#FE3C00" stroke="#4237A1" stroke-width="12"/>
+    <path id="shine" d="M 53 68 C 58 51 75 49 84 61" fill="none" stroke="#FFF6D6" stroke-width="10" opacity="0.52" stroke-linecap="round"/>
+  </g>
+</svg>

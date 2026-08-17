@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="512" viewBox="0 0 256 512">
+  <title>ice_crystal_center</title>
+  <metadata>LogicalCellPixels=512; RecommendedPixelsPerUnit=512; Pivot=Top Center (0.5, 1.0)</metadata>
+
+  <defs>
+    <linearGradient id="slotMain" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#4B477F"/>
+      <stop offset="0.52" stop-color="#39366B"/>
+      <stop offset="1" stop-color="#2A2858"/>
+    </linearGradient>
+    <linearGradient id="slotRecess" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#38366B"/>
+      <stop offset="0.62" stop-color="#2E2C5B"/>
+      <stop offset="1" stop-color="#24234D"/>
+    </linearGradient>
+    <linearGradient id="iceMain" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#E1F8FF" stop-opacity="0.98"/>
+      <stop offset="0.42" stop-color="#A8E9FB" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#59B9E4" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="iceFacet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="0.55" stop-color="#BCEFFF" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#67C7EC" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="coverMain" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#E3C7B8"/>
+      <stop offset="0.48" stop-color="#C9A99C"/>
+      <stop offset="1" stop-color="#AB877D"/>
+    </linearGradient>
+    <linearGradient id="coverSoft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DCC0B2"/>
+      <stop offset="0.58" stop-color="#C4A397"/>
+      <stop offset="1" stop-color="#A98278"/>
+    </linearGradient>
+    <linearGradient id="mysteryMain" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#444250"/>
+      <stop offset="0.46" stop-color="#34323F"/>
+      <stop offset="1" stop-color="#24232D"/>
+    </linearGradient>
+    <radialGradient id="shadowFade" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#17142F" stop-opacity="0.72"/>
+      <stop offset="0.62" stop-color="#17142F" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#17142F" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="iceGlow" x="-30%" y="-50%" width="160%" height="200%">
+      <feGaussianBlur stdDeviation="13"/>
+    </filter>
+  </defs>
+
+  <path d="M54 48h148l-22 279-52 137-57-139Z" fill="#58BDE6" opacity="0.28" filter="url(#iceGlow)"/>
+  <path d="M54 48h148l-22 279-52 137-57-139Z" fill="url(#iceMain)" stroke="#4A92C5" stroke-width="12" stroke-linejoin="round"/>
+  <path d="M68 65h58l2 349-43-99Z" fill="#F5FDFF" opacity="0.64"/>
+  <path d="m128 66 60 1-21 254-39 93Z" fill="#52B9E2" opacity="0.48"/>
+  <path d="M70 67h112" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" opacity="0.84"/>
+</svg>

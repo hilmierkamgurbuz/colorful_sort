@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160" fill="none" shape-rendering="geometricPrecision">
+  <title>plus</title>
+  <desc>Text-free editable UI master with a transparent canvas.</desc>
+  <!-- Locked palette: purple #7259FF, outline #4237A1, shadow #2A1D65, yellow #FEC901, orange #F08A00, green #00D44C, green_bevel #00A936, red #FE3C00, red_bevel #C91A13, lavender #9A99FF, cream #FFF6D6 -->
+  <g id="artwork" stroke-linejoin="round">
+    <circle id="shadow" cx="80" cy="88" r="64" fill="#2A1D65" opacity="0.95"/>
+    <circle id="outline" cx="80" cy="78" r="64" fill="#4237A1"/>
+    <circle id="bevel" cx="80" cy="78" r="52" fill="#00A936"/>
+    <circle id="face" cx="80" cy="72" r="48" fill="#00D44C"/>
+    <path id="glyph_outline" d="M 80 43 V 101 M 51 72 H 109" fill="none" stroke="#4237A1" stroke-width="25" stroke-linecap="round"/>
+    <path id="glyph" d="M 80 43 V 101 M 51 72 H 109" fill="none" stroke="#FFF6D6" stroke-width="13" stroke-linecap="round"/>
+  </g>
+</svg>

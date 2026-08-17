@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none" shape-rendering="geometricPrecision">
+  <title>coin</title>
+  <desc>Text-free editable UI master with a transparent canvas.</desc>
+  <!-- Locked palette: purple #7259FF, outline #4237A1, shadow #2A1D65, yellow #FEC901, orange #F08A00, green #00D44C, green_bevel #00A936, red #FE3C00, red_bevel #C91A13, lavender #9A99FF, cream #FFF6D6 -->
+  <g id="artwork" stroke-linejoin="round">
+    <circle id="shadow" cx="96" cy="104" r="76" fill="#2A1D65" opacity="0.95"/>
+    <circle id="outline" cx="96" cy="92" r="78" fill="#4237A1"/>
+    <circle id="rim" cx="96" cy="92" r="65" fill="#F08A00"/>
+    <circle id="face" cx="96" cy="86" r="52" fill="#FEC901"/>
+    <circle id="shine" cx="78" cy="65" r="13" fill="#FFF6D6" opacity="0.52"/>
+    <path id="emboss" d="M 126 66 C 103 48 66 59 62 88 C 58 117 88 133 116 117 M 116 117 L 107 105 M 116 117 L 101 121" fill="none" stroke="#F08A00" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>

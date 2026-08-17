@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192" viewBox="0 0 192 192" fill="none" shape-rendering="geometricPrecision">
+  <title>vibration</title>
+  <desc>Text-free editable UI master with a transparent canvas.</desc>
+  <!-- Locked palette: purple #7259FF, outline #4237A1, shadow #2A1D65, yellow #FEC901, orange #F08A00, green #00D44C, green_bevel #00A936, red #FE3C00, red_bevel #C91A13, lavender #9A99FF, cream #FFF6D6 -->
+  <g id="artwork" stroke-linejoin="round">
+    <path id="waves_outline" d="M 34 49 C 19 65 19 81 34 96 C 19 111 19 127 34 143 M 158 49 C 173 65 173 81 158 96 C 173 111 173 127 158 143" fill="none" stroke="#4237A1" stroke-width="28" stroke-linecap="round" stroke-linejoin="round"/>
+    <path id="waves" d="M 34 49 C 19 65 19 81 34 96 C 19 111 19 127 34 143 M 158 49 C 173 65 173 81 158 96 C 173 111 173 127 158 143" fill="none" stroke="#FFF6D6" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect id="phone_outline" x="52" y="29" width="88" height="136" rx="24" fill="#4237A1"/>
+    <rect id="phone" x="64" y="41" width="64" height="112" rx="16" fill="#FFF6D6"/>
+    <rect id="screen" x="77" y="57" width="38" height="68" rx="8" fill="#7259FF"/>
+    <circle id="home_dot" cx="96" cy="140" r="6" fill="#7259FF"/>
+  </g>
+</svg>

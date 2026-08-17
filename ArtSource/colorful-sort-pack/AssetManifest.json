@@ -1,0 +1,2062 @@
+{
+  "name": "Colorful Sort 2D Asset Pack",
+  "version": 7,
+  "reference_resolution": [
+    1440,
+    2560
+  ],
+  "gameplay_cell_pixels": 512,
+  "recommended_gameplay_ppu": 512,
+  "asset_count": 57,
+  "assembly_recipes": {
+    "preferred_complete_2cell_slots": {
+      "production_provenance": {
+        "summary": "full rerender / no compositing / no nonuniform warp",
+        "generation": "one complete blank-canvas OpenAI built-in ImageGen render per sprite",
+        "allowed_processing": [
+          "same-raw matte and alpha cleanup",
+          "one complete-subject crop",
+          "one whole-render uniform isotropic affine scale",
+          "transparent canvas padding"
+        ],
+        "artwork_compositing": false,
+        "nonuniform_warp": false,
+        "regional_or_piecewise_mapping": false,
+        "modular_sprite_inputs": false,
+        "canonical_processor": "Sources/ImageGen/Gameplay/process_slot_complete_2cell_full_rerender_strict.py",
+        "prompt_and_source_record": "Sources/ImageGen/Gameplay/SlotComplete2Cell_FullRerender_Prompts.md",
+        "source_qa_record": "Sources/ImageGen/Gameplay/SlotComplete2Cell_FullRerender_QA.json"
+      },
+      "normal": {
+        "path": "Gameplay/slot_complete_2cell.png",
+        "dimensions": [
+          640,
+          1664
+        ],
+        "pivot": [
+          0.5,
+          0.0
+        ],
+        "pixels_per_unit": 512,
+        "logical_cell_count": 2,
+        "optional_tiled_border": [
+          160,
+          832,
+          160,
+          320
+        ]
+      },
+      "integrated_ice": {
+        "path": "Gameplay/slot_ice_complete_2cell.png",
+        "dimensions": [
+          640,
+          1984
+        ],
+        "pivot": [
+          0.5,
+          0.0
+        ],
+        "pixels_per_unit": 512,
+        "logical_cell_count": 2,
+        "optional_tiled_border": [
+          160,
+          1152,
+          160,
+          320
+        ]
+      },
+      "usage": "Fixed 2-cell: Simple. Variable cell count: Tiled in exact 512px steps with the listed border; do not use free Sliced stretch"
+    },
+    "slot_column_top_left_pixels": {
+      "status": "legacy_optional_for_variable_height_columns",
+      "top": [
+        0,
+        0
+      ],
+      "cell_i": "[0, 320 + i*512]",
+      "bottom": "[0, 320 + cellCount*512]",
+      "optional_shadow": "center under the completed column",
+      "canonical_join_bands": "top lower 160px and bottom upper 128px reuse the matching normal middle rail/cavity profile"
+    },
+    "slot_column_unity_units": {
+      "status": "legacy_optional_for_variable_height_columns",
+      "bottom_attach": [
+        0,
+        0
+      ],
+      "middle_center_k": "[0, 0.5 + k], k=0..cellCount-1",
+      "top_attach": "[0, cellCount]",
+      "bottom_feature": "integrated front-facing 2x2 stud seat"
+    },
+    "integrated_ice_slot_top_left_pixels": {
+      "status": "legacy_optional_for_variable_height_columns",
+      "top": [
+        0,
+        0
+      ],
+      "middle_i": "[0, 320 + i*512]",
+      "bottom_with_ice": "[0, 320 + cellCount*512]",
+      "bottom_feature": "integrated front-facing 2x2 stud seat with frost shelf and three icicles underneath",
+      "canonical_join_bands": "top lower 160px and bottom upper 128px reuse the matching ice middle rail/cavity profile"
+    },
+    "cover_column_top_left_pixels": {
+      "cap": [
+        0,
+        0
+      ],
+      "repeat_cell_i": "[32, 320 + i*512], i=0..cellCount-2",
+      "bottom_cell": "[32, 320 + (cellCount-1)*512]",
+      "separator_i": "[32, 240 + i*512], i=1..cellCount-1"
+    },
+    "cover_column_unity_units": {
+      "bottom_center": [
+        0,
+        0.5
+      ],
+      "repeat_center_k": "[0, 1.5 + k], k=0..cellCount-2",
+      "top_bottom_pivot": "[0, cellCount]"
+    },
+    "ice_crystal_top_pivot_offsets_unity_units": {
+      "left": [
+        -0.33984375,
+        -0.41015625
+      ],
+      "center": [
+        0.0,
+        -0.37109375
+      ],
+      "right": [
+        0.33984375,
+        -0.41015625
+      ]
+    },
+    "mystery_overlay": "mystery_face_overlay and question_mark_decal share the same 640x640 canvas and pivot; overlay 1:1"
+  },
+  "palette": {
+    "purple": "#7259FF",
+    "dark_outline": "#4237A1",
+    "yellow": "#FEC901",
+    "orange": "#F08A00",
+    "green": "#00D44C",
+    "red": "#FE3C00",
+    "lavender": "#9A99FF",
+    "ice_light": "#B9E3F7",
+    "ice_mid": "#92D7F2",
+    "cover_beige": "#C7A89C",
+    "mystery": "#2A2835"
+  },
+  "assets": [
+    {
+      "path": "Backgrounds/gameplay_background_purple.png",
+      "group": "Backgrounds",
+      "dimensions": [
+        1440,
+        2560
+      ],
+      "color_mode": "RGB",
+      "sRGB": true,
+      "sha256": "4ffeddfd59a9ec5629eb4c22b84b58bf1d42a345ae4c387e1b7726ca96618852",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "deterministic raster",
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Backgrounds/gameplay_background_puzzle_silhouettes.png",
+      "group": "Backgrounds",
+      "dimensions": [
+        1440,
+        2560
+      ],
+      "color_mode": "RGB",
+      "sRGB": true,
+      "sha256": "75c1864d499b80cbe421a63e38682e12341c14f58d3470a4bbf4bcb9e06a7718",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Backgrounds/gameplay_block_pattern_512.png",
+      "group": "Backgrounds",
+      "dimensions": [
+        512,
+        512
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "ac3f5fc167905e75cd59f85ec732456a6818fd5dfa5cbfd84725b51652f5f364",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Repeat",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "deterministic raster",
+      "alpha_range": [
+        0,
+        62
+      ],
+      "opaque_content_bbox": [
+        0,
+        0,
+        512,
+        512
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Backgrounds/menu_background_blocks.png",
+      "group": "Backgrounds",
+      "dimensions": [
+        1440,
+        2560
+      ],
+      "color_mode": "RGB",
+      "sRGB": true,
+      "sha256": "e7ca641c354107b3956c703d3547505cba735520fb070dd114a6d8890242596d",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/cover_bottom_cap.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        512
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "66e540e1c093f748fa62235cfea3d72804a87589eedbf310faa59b393ecf8f6a",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        108,
+        0,
+        531,
+        512
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/cover_cell_repeat.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        512
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "808d7cc3564368bc7d1b5615cc2930d39fddf904e8ddb3f89d52961d7ba40894",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        108,
+        0,
+        531,
+        512
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/cover_separator.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        160
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "342e4bfca714200597c204379d66cdc85ec87fb9fa0f99d76793e965ee5a6e98",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        102,
+        28,
+        538,
+        131
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/cover_top_cap.png",
+      "group": "Gameplay",
+      "dimensions": [
+        704,
+        320
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "ab397ee5ceb9fade66881b6cf750918308f0a17132c08e87121618f014dd694b",
+      "pivot": [
+        0.5,
+        0.0
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        130,
+        97,
+        574,
+        320
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/ice_crystal_center.png",
+      "group": "Gameplay",
+      "dimensions": [
+        256,
+        512
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "18346054da50c0b4c23fadeb6b7750fb86adbc3f594e84f2f9d03f3ab21f622c",
+      "pivot": [
+        0.5,
+        1.0
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        35,
+        40,
+        221,
+        490
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/ice_crystal_left.png",
+      "group": "Gameplay",
+      "dimensions": [
+        256,
+        448
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "a87f97ccabe35e5953f7208bf9010b4a471a228dcb2f24b8e9c29691b855994e",
+      "pivot": [
+        0.5,
+        1.0
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        22,
+        35,
+        213,
+        428
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/ice_crystal_right.png",
+      "group": "Gameplay",
+      "dimensions": [
+        256,
+        448
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "44538540f6f4c5fe8027518ad7fa98f78f38021fbccfff9c39e2e65cb2215d9f",
+      "pivot": [
+        0.5,
+        1.0
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        43,
+        35,
+        234,
+        428
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/ice_frost_band.png",
+      "group": "Gameplay",
+      "dimensions": [
+        704,
+        320
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "c9fc6f8921a6bd700e42b15a9581c6016eba690fa81ebea4e50b4dfbf0f68430",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        46,
+        49,
+        658,
+        271
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/mystery_face_overlay.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        640
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "bd28c970f16a2f68ca828fe5ff3c001cd275845ced26c80a669f44acde14a2f6",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        48,
+        48,
+        592,
+        592
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/question_mark_decal.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        640
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "ec7960c378624151b86d0d2a879ac7bb052fac1bbce223854e81349553162ce0",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        176,
+        96,
+        464,
+        544
+      ],
+      "sprite_type": "Simple",
+      "expected_glyph": "?"
+    },
+    {
+      "path": "Gameplay/slot_bottom.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        320
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "5ab0e4efcb6a8d470b60a4ff89ec32dbb712d122ac3de5057a611bd2712347b8",
+      "pivot": [
+        0.5,
+        1.0
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        110,
+        0,
+        530,
+        320
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/slot_cell_repeat.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        512
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "e48bb94a2153fdbca9e376b51490700314376c731b1f9d3c383a3993960c54e6",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        110,
+        0,
+        530,
+        512
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/slot_complete_2cell.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        1664
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "485d44082a113debbb6caf982af936ac09339f220abba892ac3e2e9aeae435bd",
+      "pivot": [
+        0.5,
+        0.0
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        66,
+        90,
+        574,
+        1574
+      ],
+      "variant": "normal",
+      "logical_cell_count": 2,
+      "recommended_usage": "Preferred whole 2-cell SpriteRenderer asset",
+      "nine_slice_recommended": false,
+      "optional_tiled_border": [
+        160,
+        832,
+        160,
+        320
+      ],
+      "optional_tiled_usage": "Advanced only: SpriteRenderer Draw Mode Tiled in exact 512 px cell increments",
+      "production_provenance": {
+        "summary": "full rerender / no compositing / no nonuniform warp",
+        "generation": "one complete blank-canvas OpenAI built-in ImageGen render per sprite",
+        "allowed_processing": [
+          "same-raw matte and alpha cleanup",
+          "one complete-subject crop",
+          "one whole-render uniform isotropic affine scale",
+          "transparent canvas padding"
+        ],
+        "artwork_compositing": false,
+        "nonuniform_warp": false,
+        "regional_or_piecewise_mapping": false,
+        "modular_sprite_inputs": false,
+        "canonical_processor": "Sources/ImageGen/Gameplay/process_slot_complete_2cell_full_rerender_strict.py",
+        "prompt_and_source_record": "Sources/ImageGen/Gameplay/SlotComplete2Cell_FullRerender_Prompts.md",
+        "source_qa_record": "Sources/ImageGen/Gameplay/SlotComplete2Cell_FullRerender_QA.json"
+      },
+      "legacy_modular_alternative": [
+        "slot_top",
+        "slot_cell_repeat",
+        "slot_bottom"
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/slot_ice_bottom.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        640
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "6256ae8e073672fc9371802bc4d32c6cdcc26194415e24b9753b1dee3e00b61b",
+      "pivot": [
+        0.5,
+        1.0
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        110,
+        0,
+        530,
+        581
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/slot_ice_complete_2cell.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        1984
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "6396b3b249c9c075b1865090beda48c53e7afe846bd675c3e26291400444acb9",
+      "pivot": [
+        0.5,
+        0.0
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        70,
+        60,
+        570,
+        1924
+      ],
+      "variant": "integrated_ice",
+      "logical_cell_count": 2,
+      "recommended_usage": "Preferred whole 2-cell SpriteRenderer asset",
+      "nine_slice_recommended": false,
+      "optional_tiled_border": [
+        160,
+        1152,
+        160,
+        320
+      ],
+      "optional_tiled_usage": "Advanced only: SpriteRenderer Draw Mode Tiled in exact 512 px cell increments",
+      "production_provenance": {
+        "summary": "full rerender / no compositing / no nonuniform warp",
+        "generation": "one complete blank-canvas OpenAI built-in ImageGen render per sprite",
+        "allowed_processing": [
+          "same-raw matte and alpha cleanup",
+          "one complete-subject crop",
+          "one whole-render uniform isotropic affine scale",
+          "transparent canvas padding"
+        ],
+        "artwork_compositing": false,
+        "nonuniform_warp": false,
+        "regional_or_piecewise_mapping": false,
+        "modular_sprite_inputs": false,
+        "canonical_processor": "Sources/ImageGen/Gameplay/process_slot_complete_2cell_full_rerender_strict.py",
+        "prompt_and_source_record": "Sources/ImageGen/Gameplay/SlotComplete2Cell_FullRerender_Prompts.md",
+        "source_qa_record": "Sources/ImageGen/Gameplay/SlotComplete2Cell_FullRerender_QA.json"
+      },
+      "legacy_modular_alternative": [
+        "slot_ice_top",
+        "slot_ice_middle",
+        "slot_ice_bottom"
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/slot_ice_middle.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        512
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "cc1ae62b3c653c1827a1b7315e09218047d807eb913eff372c649343440d8f6d",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        110,
+        0,
+        530,
+        512
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/slot_ice_top.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        320
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "17a3836afa6e0857a2c7c4acb86b3c68ef328dd317cb4ee3d6a7720d95f86e48",
+      "pivot": [
+        0.5,
+        0.0
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        110,
+        20,
+        530,
+        320
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/slot_shadow.png",
+      "group": "Gameplay",
+      "dimensions": [
+        768,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "71db418fe7c8831701f20fbb39b9c2f79b0f2a8e4b17adcbc5aafef83fc4400b",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        203
+      ],
+      "opaque_content_bbox": [
+        52,
+        40,
+        716,
+        215
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "Gameplay/slot_top.png",
+      "group": "Gameplay",
+      "dimensions": [
+        640,
+        320
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "de1e574e06288cc6b37a192af47477b7646162d90eddd916149d5fbf26f01ed6",
+      "pivot": [
+        0.5,
+        0.0
+      ],
+      "pixels_per_unit": 512,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        110,
+        20,
+        530,
+        320
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Buttons/close_shell_disabled.png",
+      "group": "UI",
+      "dimensions": [
+        256,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "f876b006fee6e838bef612d7584ab3db149ea02d50e646abf24bf9cec3fa9c2b",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        7,
+        8,
+        248,
+        247
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Buttons/close_shell_normal.png",
+      "group": "UI",
+      "dimensions": [
+        256,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "b0e309fab6208daae7a947cd9c7e1f32a0281960f690adec9e6491f18598dc84",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        7,
+        8,
+        248,
+        247
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Buttons/close_shell_pressed.png",
+      "group": "UI",
+      "dimensions": [
+        256,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "424e77721a15a08df91c5baa0884ed6384f1e8b0cc159632833e8c92aca8d6b4",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        7,
+        28,
+        248,
+        250
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Buttons/level_button_disabled.png",
+      "group": "UI",
+      "dimensions": [
+        1024,
+        384
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "bfd90d4f52041c0b9540a81f855b05e20f27dbcc00a00e82616c98be86df560b",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        18,
+        17,
+        1005,
+        366
+      ],
+      "border": [
+        128,
+        88,
+        128,
+        104
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/level_button_normal.png",
+      "group": "UI",
+      "dimensions": [
+        1024,
+        384
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "7d1b18418c30c6c0d8e71c4433b96e25dcd1477550297450b8c9affabab56317",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        18,
+        17,
+        1005,
+        366
+      ],
+      "border": [
+        128,
+        88,
+        128,
+        104
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/level_button_pressed.png",
+      "group": "UI",
+      "dimensions": [
+        1024,
+        384
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "560c2a1822fe42dcfbf986d6cb86f53ba3ff933d5046f16218efad262def77f6",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        18,
+        49,
+        1005,
+        369
+      ],
+      "border": [
+        128,
+        88,
+        128,
+        104
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/square_green_disabled.png",
+      "group": "UI",
+      "dimensions": [
+        320,
+        320
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "4f8c160b693a64ae174a730e3a8db4f01db89a2ee25bc1316d8a4913bd2c2110",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        11,
+        13,
+        309,
+        307
+      ],
+      "border": [
+        72,
+        72,
+        72,
+        88
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/square_green_normal.png",
+      "group": "UI",
+      "dimensions": [
+        320,
+        320
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "914d794d439d826d8a186cb0962f654f2deded5a5e1a8425ec080dc2feb7d903",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        11,
+        13,
+        309,
+        307
+      ],
+      "border": [
+        72,
+        72,
+        72,
+        88
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/square_green_pressed.png",
+      "group": "UI",
+      "dimensions": [
+        320,
+        320
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "3dd8da43eafb8b5f2a2d545471ec88e12d54a4e41734b2fa290a041762125ad1",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        11,
+        39,
+        309,
+        310
+      ],
+      "border": [
+        72,
+        72,
+        72,
+        88
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/wide_green_disabled.png",
+      "group": "UI",
+      "dimensions": [
+        896,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "f3026a06f0828f8968878fcdc0c5a8cd7bd99cf7299ab0390d1e94f3940449d3",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        11,
+        874,
+        244
+      ],
+      "border": [
+        88,
+        64,
+        88,
+        80
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/wide_green_normal.png",
+      "group": "UI",
+      "dimensions": [
+        896,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "4ee2ec5350f4e69e775bc9253c9ebbd2679778584663b51ac67a106058395547",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        11,
+        874,
+        244
+      ],
+      "border": [
+        88,
+        64,
+        88,
+        80
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/wide_green_pressed.png",
+      "group": "UI",
+      "dimensions": [
+        896,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "864e0fd6fe19684b1de1cac5f561df8db7470db127a9201c1c87978bd179a669",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        32,
+        874,
+        247
+      ],
+      "border": [
+        88,
+        64,
+        88,
+        80
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/wide_lavender_disabled.png",
+      "group": "UI",
+      "dimensions": [
+        896,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "d3f65854b6777ffc2b13e6e991963233202e36ac325ad20c442b29d811d40dad",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        11,
+        874,
+        244
+      ],
+      "border": [
+        88,
+        64,
+        88,
+        80
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/wide_lavender_normal.png",
+      "group": "UI",
+      "dimensions": [
+        896,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "250e17c4f90b9ba8410832bf98c85d9830ada042e43d6a0d73b800f9ce8d0123",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        11,
+        874,
+        244
+      ],
+      "border": [
+        88,
+        64,
+        88,
+        80
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/wide_lavender_pressed.png",
+      "group": "UI",
+      "dimensions": [
+        896,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "1ba4590e0cb455c5826d3a476d7a5e523c5036baddfc8c6d74a4297d393c5b66",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        32,
+        874,
+        247
+      ],
+      "border": [
+        88,
+        64,
+        88,
+        80
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/wide_red_disabled.png",
+      "group": "UI",
+      "dimensions": [
+        896,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "1600a78f56b6aa6423c41bffd08bc4200c0759aec99ec9aa13e336f22e076a2a",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        11,
+        874,
+        244
+      ],
+      "border": [
+        88,
+        64,
+        88,
+        80
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/wide_red_normal.png",
+      "group": "UI",
+      "dimensions": [
+        896,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "cd4f15ca3fe4609f3244edbdaf79a78df97fee8dc4b234e79d62c2d350ac45b9",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        11,
+        874,
+        244
+      ],
+      "border": [
+        88,
+        64,
+        88,
+        80
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Buttons/wide_red_pressed.png",
+      "group": "UI",
+      "dimensions": [
+        896,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "afbf9dcf58cf22a2047e1cb3235176147f860d64af18740dced6302f8c456014",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        32,
+        874,
+        247
+      ],
+      "border": [
+        88,
+        64,
+        88,
+        80
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/HUD/coin.png",
+      "group": "UI",
+      "dimensions": [
+        192,
+        192
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "c089374ee3be5e4008c51389a1ca756cab630a12910edc129a2ffae9e93a7aa2",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        17,
+        16,
+        175,
+        173
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/HUD/heart.png",
+      "group": "UI",
+      "dimensions": [
+        192,
+        192
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "4edf9156264beb97ce32d37e1b883a4c0172efb07090efe9a48b4f8884528a85",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        11,
+        21,
+        181,
+        170
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/HUD/hud_pill_9slice.png",
+      "group": "UI",
+      "dimensions": [
+        640,
+        192
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "293086a47602dfcef5697afd920a519a7a559079bbff29e546fdb8eb5cdabed7",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        13,
+        9,
+        627,
+        182
+      ],
+      "border": [
+        72,
+        56,
+        72,
+        72
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/HUD/plus.png",
+      "group": "UI",
+      "dimensions": [
+        160,
+        160
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "76e9269cc7d565c48be985906728dd57371f0b9fea3914decd9e0c7b57cf2510",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        18,
+        16,
+        142,
+        141
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Icons/close.png",
+      "group": "UI",
+      "dimensions": [
+        192,
+        192
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "83b16aa394bbbe54f417aeab971390857642bac9be30b28fec23524327f9df61",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        20,
+        20,
+        172,
+        170
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Icons/off_slash.png",
+      "group": "UI",
+      "dimensions": [
+        192,
+        192
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "a3e7bda5dab0c6cac5d1121e79fce9f357717618b48bba40d6a5c5127dee295f",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        21,
+        171,
+        171
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Icons/profile.png",
+      "group": "UI",
+      "dimensions": [
+        192,
+        192
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "a66450b5499d69115f5411ce404e665ab00a77fe5ec3d66c334adc2531d7364c",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        34,
+        18,
+        158,
+        175
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Icons/restart.png",
+      "group": "UI",
+      "dimensions": [
+        192,
+        192
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "572f70bb354adedf0fe985c4358db4c312c7ad4a8acad14da7a6cea4e8c0af4c",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        21,
+        15,
+        174,
+        173
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Icons/sound.png",
+      "group": "UI",
+      "dimensions": [
+        192,
+        192
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "aef9bdd63f4cb28aed11e9e5a07b56b12177b6e8061d7384bc803b08a28fe63f",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        16,
+        30,
+        182,
+        160
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Icons/vibration.png",
+      "group": "UI",
+      "dimensions": [
+        192,
+        192
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "9a816555f7dd2ae58ee68ee7c5e1f1e67a653e2479b5e9801765801ede9c87b6",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        9,
+        18,
+        183,
+        171
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Popups/popup_body_9slice.png",
+      "group": "UI",
+      "dimensions": [
+        1024,
+        1280
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "08ecba66a23eedda14afe231e3f134bf8ea982ef526fc9d2cb040a7a6a4ced32",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        20,
+        25,
+        1003,
+        1254
+      ],
+      "border": [
+        96,
+        112,
+        96,
+        136
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Popups/popup_header_9slice.png",
+      "group": "UI",
+      "dimensions": [
+        1024,
+        320
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "b83ebcd72aabf9d5423d4acc93c75e4f39b3f80b4755781d1ef429958268ead3",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        20,
+        13,
+        1003,
+        307
+      ],
+      "border": [
+        112,
+        72,
+        112,
+        88
+      ],
+      "sprite_type": "Sliced"
+    },
+    {
+      "path": "UI/Settings/gear.png",
+      "group": "UI",
+      "dimensions": [
+        192,
+        192
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "b33271dc5ec2240124e2caec17647f4cee41e0867f9abc77564d94cf141b7586",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        11,
+        10,
+        181,
+        181
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Settings/settings_shell_disabled.png",
+      "group": "UI",
+      "dimensions": [
+        256,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "177f4f4ab9f89a246fd8b40338737642448ee6f07188f91cbf884bc7c114774f",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        7,
+        9,
+        248,
+        246
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Settings/settings_shell_normal.png",
+      "group": "UI",
+      "dimensions": [
+        256,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "feb9f40298c5468d2c827bbc6f268a787a6602c002f86e0924b4405b7930a3b2",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        7,
+        9,
+        248,
+        246
+      ],
+      "sprite_type": "Simple"
+    },
+    {
+      "path": "UI/Settings/settings_shell_pressed.png",
+      "group": "UI",
+      "dimensions": [
+        256,
+        256
+      ],
+      "color_mode": "RGBA",
+      "sRGB": true,
+      "sha256": "fe62a5090538f89f24897ddea31774d54d7700ecdd31a19f0489134c1965476e",
+      "pivot": [
+        0.5,
+        0.5
+      ],
+      "pixels_per_unit": 100,
+      "wrap_mode": "Clamp",
+      "filter_mode": "Bilinear",
+      "mip_maps": false,
+      "visual_source": "OpenAI built-in ImageGen",
+      "alpha_range": [
+        0,
+        255
+      ],
+      "opaque_content_bbox": [
+        7,
+        29,
+        248,
+        249
+      ],
+      "sprite_type": "Simple"
+    }
+  ]
+}

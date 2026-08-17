@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="640" viewBox="0 0 640 640">
+  <title>question_mark_decal</title>
+  <metadata>LogicalCellPixels=512; RecommendedPixelsPerUnit=512; Pivot=Center (0.5, 0.5)</metadata>
+
+  <defs>
+    <linearGradient id="slotMain" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#4B477F"/>
+      <stop offset="0.52" stop-color="#39366B"/>
+      <stop offset="1" stop-color="#2A2858"/>
+    </linearGradient>
+    <linearGradient id="slotRecess" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#38366B"/>
+      <stop offset="0.62" stop-color="#2E2C5B"/>
+      <stop offset="1" stop-color="#24234D"/>
+    </linearGradient>
+    <linearGradient id="iceMain" x1="0" y1="0" x2="0.85" y2="1">
+      <stop offset="0" stop-color="#E1F8FF" stop-opacity="0.98"/>
+      <stop offset="0.42" stop-color="#A8E9FB" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#59B9E4" stop-opacity="0.98"/>
+    </linearGradient>
+    <linearGradient id="iceFacet" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.9"/>
+      <stop offset="0.55" stop-color="#BCEFFF" stop-opacity="0.72"/>
+      <stop offset="1" stop-color="#67C7EC" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="coverMain" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#E3C7B8"/>
+      <stop offset="0.48" stop-color="#C9A99C"/>
+      <stop offset="1" stop-color="#AB877D"/>
+    </linearGradient>
+    <linearGradient id="coverSoft" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#DCC0B2"/>
+      <stop offset="0.58" stop-color="#C4A397"/>
+      <stop offset="1" stop-color="#A98278"/>
+    </linearGradient>
+    <linearGradient id="mysteryMain" x1="0" y1="0" x2="0.9" y2="1">
+      <stop offset="0" stop-color="#444250"/>
+      <stop offset="0.46" stop-color="#34323F"/>
+      <stop offset="1" stop-color="#24232D"/>
+    </linearGradient>
+    <radialGradient id="shadowFade" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#17142F" stop-opacity="0.72"/>
+      <stop offset="0.62" stop-color="#17142F" stop-opacity="0.4"/>
+      <stop offset="1" stop-color="#17142F" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="iceGlow" x="-30%" y="-50%" width="160%" height="200%">
+      <feGaussianBlur stdDeviation="13"/>
+    </filter>
+  </defs>
+
+  <g transform="translate(149 155) scale(0.64)">
+  <path d="M116 177C116 91 178 48 262 48c91 0 146 49 146 125 0 81-64 110-111 137-34 20-46 42-46 81" fill="none" stroke="#101018" stroke-width="130" stroke-linecap="round" stroke-linejoin="round" opacity="0.58" transform="translate(10 14)"/>
+  <circle cx="261" cy="456" r="65" fill="#101018" opacity="0.58" transform="translate(10 14)"/>
+  <path d="M116 177C116 91 178 48 262 48c91 0 146 49 146 125 0 81-64 110-111 137-34 20-46 42-46 81" fill="none" stroke="#1A1923" stroke-width="130" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M116 177C116 91 178 48 262 48c91 0 146 49 146 125 0 81-64 110-111 137-34 20-46 42-46 81" fill="none" stroke="#F1EFEA" stroke-width="78" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="261" cy="456" r="65" fill="#1A1923"/>
+  <circle cx="261" cy="456" r="39" fill="#F1EFEA"/>
+  <path d="M132 158c10-54 55-84 117-84" fill="none" stroke="#FFFFFF" stroke-width="19" stroke-linecap="round" opacity="0.82"/>
+  <circle cx="247" cy="443" r="12" fill="#FFFFFF" opacity="0.78"/>
+  </g>
+</svg>

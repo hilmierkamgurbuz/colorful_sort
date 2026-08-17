@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none" shape-rendering="geometricPrecision">
+  <title>close_shell_normal</title>
+  <desc>Text-free editable UI master with a transparent canvas.</desc>
+  <!-- Locked palette: purple #7259FF, outline #4237A1, shadow #2A1D65, yellow #FEC901, orange #F08A00, green #00D44C, green_bevel #00A936, red #FE3C00, red_bevel #C91A13, lavender #9A99FF, cream #FFF6D6 -->
+  <g id="artwork" stroke-linejoin="round">
+    <circle id="shadow" cx="128" cy="132" r="94" fill="#2A1D65" opacity="0.95"/>
+    <circle id="outline" cx="128" cy="108" r="100" fill="#4237A1"/>
+    <circle id="bevel" cx="128" cy="108" r="87" fill="#C91A13" opacity="1"/>
+    <circle id="face" cx="128" cy="98" r="78" fill="#FE3C00" opacity="1"/>
+    <path id="highlight" d="M 86 71 C 107 49 142 45 166 62" fill="none" stroke="#FFF6D6" stroke-width="8" opacity="0.4" stroke-linecap="round"/>
+  </g>
+</svg>

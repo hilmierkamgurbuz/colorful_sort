@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="320" viewBox="0 0 1024 320" fill="none" shape-rendering="geometricPrecision">
+  <title>popup_header_9slice</title>
+  <desc>Text-free editable UI master with a transparent canvas.</desc>
+  <!-- Locked palette: purple #7259FF, outline #4237A1, shadow #2A1D65, yellow #FEC901, orange #F08A00, green #00D44C, green_bevel #00A936, red #FE3C00, red_bevel #C91A13, lavender #9A99FF, cream #FFF6D6 -->
+  <g id="artwork" stroke-linejoin="round">
+    <rect id="shadow" x="48" y="64" width="928" height="220" rx="82" fill="#2A1D65" opacity="0.96"/>
+    <rect id="outline" x="38" y="24" width="948" height="242" rx="86" fill="#4237A1"/>
+    <rect id="orange_bevel" x="54" y="40" width="916" height="210" rx="70" fill="#F08A00"/>
+    <rect id="yellow_face" x="54" y="40" width="916" height="160" rx="70" fill="#FEC901"/>
+    <path id="highlight" d="M 126 62 H 898" fill="none" stroke="#FFF6D6" stroke-width="9" opacity="0.42" stroke-linecap="round"/>
+  </g>
+</svg>

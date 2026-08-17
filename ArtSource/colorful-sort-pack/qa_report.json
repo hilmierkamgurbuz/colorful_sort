@@ -1,0 +1,237 @@
+{
+  "passed": true,
+  "asset_count": 57,
+  "expected_asset_count": 57,
+  "contact_sheet": "preview_contact_sheet.png",
+  "structural_tests": {
+    "tile_pattern_edges_byte_identical": true,
+    "slot_repeat_1_to_6_min_seam_alpha": 249,
+    "slot_seam_edges_byte_identical": true,
+    "slot_ice_repeat_1_to_6_min_seam_alpha": 249,
+    "slot_ice_seam_edges_byte_identical": true,
+    "slot_join_broad_band_continuity": {
+      "passed": true,
+      "comparison": "upper bottom band mirrored from seam vs lower top band",
+      "rail_alpha_threshold_255": 64,
+      "cavity_alpha_threshold_255": 192,
+      "side_zones_x": [
+        [
+          64,
+          192
+        ],
+        [
+          448,
+          576
+        ]
+      ],
+      "cavity_x": [
+        192,
+        448
+      ],
+      "thresholds": {
+        "rail_outer_edge_p95_px": 4.0,
+        "rail_alpha_mae": 0.025,
+        "cavity_rgb_mae_255": 8.0,
+        "cavity_luminance_mae_255": 6.0,
+        "min_cavity_overlap_fraction": 0.9
+      },
+      "joins": {
+        "normal_top_to_middle": {
+          "passed": true,
+          "band_height_px_each_side": 112,
+          "rail_outer_edge_p95_px": 0.0,
+          "rail_outer_edge_max_px": 0,
+          "rail_alpha_mae": 0.0,
+          "cavity_rgb_mae_255": 0.0,
+          "cavity_luminance_mae_255": 0.0,
+          "cavity_overlap_fraction": 1.0,
+          "valid_geometry_rows": 112,
+          "violations": []
+        },
+        "normal_middle_to_bottom": {
+          "passed": true,
+          "band_height_px_each_side": 112,
+          "rail_outer_edge_p95_px": 0.0,
+          "rail_outer_edge_max_px": 0,
+          "rail_alpha_mae": 0.0,
+          "cavity_rgb_mae_255": 0.0,
+          "cavity_luminance_mae_255": 0.0,
+          "cavity_overlap_fraction": 1.0,
+          "valid_geometry_rows": 112,
+          "violations": []
+        },
+        "ice_top_to_middle": {
+          "passed": true,
+          "band_height_px_each_side": 112,
+          "rail_outer_edge_p95_px": 0.0,
+          "rail_outer_edge_max_px": 0,
+          "rail_alpha_mae": 0.0,
+          "cavity_rgb_mae_255": 0.0,
+          "cavity_luminance_mae_255": 0.0,
+          "cavity_overlap_fraction": 1.0,
+          "valid_geometry_rows": 112,
+          "violations": []
+        },
+        "ice_middle_to_bottom": {
+          "passed": true,
+          "band_height_px_each_side": 112,
+          "rail_outer_edge_p95_px": 0.0,
+          "rail_outer_edge_max_px": 0,
+          "rail_alpha_mae": 0.0,
+          "cavity_rgb_mae_255": 0.0,
+          "cavity_luminance_mae_255": 0.0,
+          "cavity_overlap_fraction": 1.0,
+          "valid_geometry_rows": 112,
+          "violations": []
+        }
+      }
+    },
+    "complete_2cell_slot_integrity": {
+      "passed": true,
+      "preferred_usage": "whole SpriteRenderer asset; no modular joins",
+      "assets": {
+        "Gameplay/slot_complete_2cell.png": {
+          "passed": true,
+          "variant": "normal",
+          "logical_cell_count": 2,
+          "silhouette": {
+            "passed": true,
+            "source_mode": "RGBA",
+            "alpha_range": [
+              0,
+              255
+            ],
+            "alpha_threshold_255": 64,
+            "content_bbox": [
+              66,
+              90,
+              574,
+              1574
+            ],
+            "visible_pixels": 740563,
+            "main_component_fraction": 1.0,
+            "stray_component_pixels": 0,
+            "enclosed_hole_pixels": 0,
+            "empty_rows_inside_bbox": 0,
+            "violations": []
+          },
+          "grooves": {
+            "passed": true,
+            "expected_groove_bands": 2,
+            "detected_groove_bands": 2,
+            "minimum_contrast_255": 8.0,
+            "maximum_band_width_px": 32,
+            "cells": [
+              {
+                "cell_index": 0,
+                "window_y": [
+                  448,
+                  704
+                ],
+                "baseline_luminance_255": 46.64,
+                "detected_bands": [
+                  {
+                    "center_y": 473.5,
+                    "width_px": 10,
+                    "peak_contrast_255": 30.123
+                  }
+                ],
+                "passed": true
+              },
+              {
+                "cell_index": 1,
+                "window_y": [
+                  960,
+                  1216
+                ],
+                "baseline_luminance_255": 46.512,
+                "detected_bands": [
+                  {
+                    "center_y": 985.5,
+                    "width_px": 10,
+                    "peak_contrast_255": 28.931
+                  }
+                ],
+                "passed": true
+              }
+            ],
+            "violations": []
+          }
+        },
+        "Gameplay/slot_ice_complete_2cell.png": {
+          "passed": true,
+          "variant": "integrated_ice",
+          "logical_cell_count": 2,
+          "silhouette": {
+            "passed": true,
+            "source_mode": "RGBA",
+            "alpha_range": [
+              0,
+              255
+            ],
+            "alpha_threshold_255": 64,
+            "content_bbox": [
+              70,
+              60,
+              570,
+              1924
+            ],
+            "visible_pixels": 827028,
+            "main_component_fraction": 1.0,
+            "stray_component_pixels": 0,
+            "enclosed_hole_pixels": 0,
+            "empty_rows_inside_bbox": 0,
+            "violations": []
+          },
+          "grooves": {
+            "passed": true,
+            "expected_groove_bands": 2,
+            "detected_groove_bands": 2,
+            "minimum_contrast_255": 8.0,
+            "maximum_band_width_px": 32,
+            "cells": [
+              {
+                "cell_index": 0,
+                "window_y": [
+                  448,
+                  704
+                ],
+                "baseline_luminance_255": 44.668,
+                "detected_bands": [
+                  {
+                    "center_y": 492.5,
+                    "width_px": 10,
+                    "peak_contrast_255": 22.641
+                  }
+                ],
+                "passed": true
+              },
+              {
+                "cell_index": 1,
+                "window_y": [
+                  960,
+                  1216
+                ],
+                "baseline_luminance_255": 45.391,
+                "detected_bands": [
+                  {
+                    "center_y": 1005.0,
+                    "width_px": 11,
+                    "peak_contrast_255": 23.79
+                  }
+                ],
+                "passed": true
+              }
+            ],
+            "violations": []
+          }
+        }
+      }
+    },
+    "cover_repeat_1_to_6_min_seam_alpha": 252,
+    "cover_repeat_to_bottom_edges_byte_identical": true,
+    "mystery_overlay_canvas_match": true,
+    "nine_slice_entries_in_manifest": 18
+  },
+  "errors": []
+}

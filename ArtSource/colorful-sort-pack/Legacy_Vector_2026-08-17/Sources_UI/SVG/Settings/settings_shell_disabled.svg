@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" fill="none" shape-rendering="geometricPrecision">
+  <title>settings_shell_disabled</title>
+  <desc>Text-free editable UI master with a transparent canvas.</desc>
+  <!-- Locked palette: purple #7259FF, outline #4237A1, shadow #2A1D65, yellow #FEC901, orange #F08A00, green #00D44C, green_bevel #00A936, red #FE3C00, red_bevel #C91A13, lavender #9A99FF, cream #FFF6D6 -->
+  <g id="artwork" stroke-linejoin="round">
+    <rect id="shadow" x="32" y="48" width="192" height="196" rx="54" fill="#2A1D65" opacity="0.95"/>
+    <rect id="outline" x="28" y="20" width="200" height="196" rx="54" fill="#4237A1"/>
+    <rect id="bevel" x="38" y="30" width="180" height="176" rx="44" fill="#7259FF" opacity="0.58"/>
+    <rect id="face" x="38" y="30" width="180" height="141" rx="44" fill="#9A99FF" opacity="0.58"/>
+  </g>
+</svg>
