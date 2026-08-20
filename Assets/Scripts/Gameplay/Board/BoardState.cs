@@ -18,7 +18,9 @@ namespace ColorfulSort.Board
     /// </summary>
     public sealed class BoardState
     {
-        private readonly BoardColumn[] _columns;
+        // Not readonly since the add-column booster: a board can grow by one column and
+        // shrink again when that is undone. Nothing else ever replaces this array.
+        private BoardColumn[] _columns;
 
         // One flag per colour id (1..MaxId). A fixed 13-entry array beats a hash set
         // here: no hashing, no allocation per query, and the whole thing is smaller
@@ -127,5 +129,59 @@ namespace ColorfulSort.Board
 
         /// <summary>Mutable access for the move machinery inside this assembly.</summary>
         internal BoardColumn ColumnFor(int columnIndex) => this[columnIndex];
+
+        /// <summary>
+        /// Adds a column to the end of the board — the add-column booster, and the only way
+        /// a column appears after <see cref="FromLevel"/> has run. Copying the array rather
+        /// than carrying a <c>List</c> keeps the common path (indexing a column, dozens of
+        /// times per rule query) on a plain array; this copy happens once per booster press.
+        /// </summary>
+        internal void AppendColumn(BoardColumn column)
+        {
+            if (column == null)
+            {
+                throw new ArgumentNullException(nameof(column));
+            }
+
+            // The same ceiling an authored level is held to (fingerprint.md: ≤ 16 columns),
+            // read from the one place that already states it rather than restated here.
+            if (_columns.Length >= LevelData.MaxColumns)
+            {
+                throw new InvalidOperationException(
+                    "The board already holds " + LevelData.MaxColumns + " columns; the booster should have refused this.");
+            }
+
+            var grown = new BoardColumn[_columns.Length + 1];
+            Array.Copy(_columns, grown, _columns.Length);
+            grown[_columns.Length] = column;
+            _columns = grown;
+        }
+
+        /// <summary>
+        /// The undo direction of <see cref="AppendColumn"/>. It refuses to drop a column
+        /// holding blocks: undo is last-in-first-out, so by the time an add-column is
+        /// reverted every move that filled it has been reverted too — a column with
+        /// anything in it means the history and the board have come apart, which is worth
+        /// stopping on rather than quietly deleting the player's blocks.
+        /// </summary>
+        internal void RemoveLastColumn()
+        {
+            if (_columns.Length == 0)
+            {
+                throw new InvalidOperationException("There is no column to remove.");
+            }
+
+            BoardColumn last = _columns[_columns.Length - 1];
+
+            if (!last.IsEmpty)
+            {
+                throw new InvalidOperationException(
+                    "The column being removed still holds " + last.Count + " block(s), so the history and the board disagree.");
+            }
+
+            var shrunk = new BoardColumn[_columns.Length - 1];
+            Array.Copy(_columns, shrunk, shrunk.Length);
+            _columns = shrunk;
+        }
     }
 }

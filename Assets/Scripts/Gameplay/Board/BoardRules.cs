@@ -48,7 +48,51 @@ namespace ColorfulSort.Board
         {
             RequireState(state);
             BoardColumn column = state[columnIndex];
-            return ColumnModifiers.IsPlayable(column) && TopRunLength(column) > 0;
+            return ColumnModifiers.IsPlayable(column)
+                   && !HoldsCompletedColour(state, columnIndex)
+                   && TopRunLength(column) > 0;
+        }
+
+        /// <summary>
+        /// A column the player is done with: it holds one colour, no hidden cell, and every block
+        /// of that colour on the board. Nothing lifts off it and nothing moves from it (D-056) —
+        /// pulling a gathered colour back apart is the one move that can only lose ground, and the
+        /// reference locks it for exactly that reason.
+        /// <para>
+        /// It is <em>completed</em>, not merely <em>full</em>: a full column of mixed colours still
+        /// lifts, because locking that would strand its blocks and make levels unsolvable. The two
+        /// coincide when a colour has as many blocks as a column has cells, which is how levels are
+        /// usually authored, and they part company when a colour is shorter than its column — that
+        /// colour is still finished, and the free cell above it was never usable anyway, since
+        /// nothing of that colour is left to land there.
+        /// </para>
+        /// <para>
+        /// Not <see cref="IsColumnSolved"/>, which asks a *local* question — does this column hold
+        /// one colour — and is true of two cats while two more sit elsewhere. Locking that would
+        /// forbid clearing a part-gathered colour out of a column somebody else needs, which can
+        /// make a level unsolvable. This asks the board-wide one.
+        /// </para>
+        /// <para>
+        /// Computed rather than remembered: <see cref="IsColourComplete"/> is the one definition of
+        /// finished, and a cached set of locked columns would be derivable state held twice — the
+        /// thing <c>BoardState</c> refuses for win and deadlock. Note that this is *not*
+        /// <c>BoardState.HasEverCompleted</c> either, which is a history fact for the ice thaw.
+        /// </para>
+        /// </summary>
+        public static bool HoldsCompletedColour(BoardState state, int columnIndex)
+        {
+            RequireState(state);
+            BoardColumn column = state[columnIndex];
+
+            if (column.IsEmpty)
+            {
+                return false;
+            }
+
+            // Cell 0's colour is enough to ask with: a mixed column, or one with a hidden cell, is
+            // refused by IsColourComplete anyway, since a completed colour's column holds nothing
+            // else and nothing unrevealed.
+            return IsColourComplete(state, column.ColourAt(0));
         }
 
         /// <summary>
@@ -69,6 +113,14 @@ namespace ColorfulSort.Board
             BoardColumn destination = state[toColumn];
 
             if (!ColumnModifiers.IsPlayable(source) || !ColumnModifiers.IsPlayable(destination))
+            {
+                return 0;
+            }
+
+            // A finished colour does not move (D-056). Only the source is checked: a completed
+            // colour is *all* of that colour, so nothing is left anywhere that could legally land
+            // on it, and the colour-match rule below already refuses everything else.
+            if (HoldsCompletedColour(state, fromColumn))
             {
                 return 0;
             }

@@ -51,6 +51,28 @@ namespace ColorfulSort.Content
         [SerializeField]
         private int coverKeyColourId;
 
+        /// <summary>
+        /// Builds a column from decoded data. <c>internal</c>, so only <c>Content</c> can make one —
+        /// the file is the authority for level content, and a setter anybody could reach would be a
+        /// second way to write it.
+        /// </summary>
+        internal static ColumnDefinition Create(
+            ColumnKind kind,
+            int capacity,
+            CellDefinition[] cells,
+            int thawAfterCompletions,
+            int coverKeyColourId)
+        {
+            return new ColumnDefinition
+            {
+                kind = kind,
+                capacity = capacity,
+                cells = cells ?? NoCells,
+                thawAfterCompletions = thawAfterCompletions,
+                coverKeyColourId = coverKeyColourId,
+            };
+        }
+
         public ColumnKind Kind => kind;
 
         public int Capacity => capacity;

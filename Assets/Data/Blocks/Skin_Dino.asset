@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d72752b8ce541dab46f662dc3e46a0, type: 3}
+  m_Name: Skin_Dino
+  m_EditorClassIdentifier: 
+  symbolMesh: {fileID: -2570995489919631058, guid: 3d8cac6f86e934e09bfc2b84abf08edd, type: 3}
+  sparkMesh: {fileID: 4300000, guid: 4fc0f2b6ad63f4a28b89ba2d5442c854, type: 2}
+  material: {fileID: 2100000, guid: a8181b3651e2547d9b100aa989c36fb4, type: 2}
+  symbolMaterial: {fileID: 2100000, guid: 116db581f61a747348486ea75df9e1dc, type: 2}
+  uiColour: {r: 0.1333, g: 0.6, b: 0.3725, a: 1}

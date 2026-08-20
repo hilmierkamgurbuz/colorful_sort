@@ -117,6 +117,26 @@ namespace ColorfulSort.Board
             return colour;
         }
 
+        /// <summary>
+        /// Replaces what one occupied cell holds, without changing how full the column is.
+        /// The shuffle booster is the only caller: it rearranges the colours already on the
+        /// board rather than moving blocks, so no <c>Push</c>/<c>Pop</c> pair could express
+        /// it. It deliberately leaves the hidden flag alone — a shuffle never touches a
+        /// hidden cell, because what sits under a '?' was fixed when the level opened
+        /// (D-011) and the solvability verdict was computed with it.
+        /// </summary>
+        internal void SetColourAt(int cellIndex, BlockColourId colour)
+        {
+            RequireOccupied(cellIndex);
+
+            if (colour.IsNone)
+            {
+                throw new ArgumentException("An occupied cell has a colour.", nameof(colour));
+            }
+
+            _colours[cellIndex] = colour;
+        }
+
         /// <summary>Reveals one cell. Returns false when it was already readable.</summary>
         internal bool Reveal(int cellIndex)
         {

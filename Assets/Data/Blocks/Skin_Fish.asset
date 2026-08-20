@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d72752b8ce541dab46f662dc3e46a0, type: 3}
+  m_Name: Skin_Fish
+  m_EditorClassIdentifier: 
+  symbolMesh: {fileID: -2362162479292463805, guid: a72a217ea17e645f2aa7fc3fe8a28205, type: 3}
+  sparkMesh: {fileID: 4300000, guid: 7aca95c80f0044318a21cb178fbb3636, type: 2}
+  material: {fileID: 2100000, guid: 2aebbca857cd041afb0342b753b0830f, type: 2}
+  symbolMaterial: {fileID: 2100000, guid: 3f13ba12c59f44cfaab446d88d8a6cef, type: 2}
+  uiColour: {r: 0, g: 0.7843, b: 0.8627, a: 1}

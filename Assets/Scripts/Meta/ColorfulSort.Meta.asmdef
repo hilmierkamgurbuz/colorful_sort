@@ -1,0 +1,19 @@
+{
+    "name": "ColorfulSort.Meta",
+    "rootNamespace": "ColorfulSort.Meta",
+    "references": [
+        "ColorfulSort.Board",
+        "ColorfulSort.Content",
+        "ColorfulSort.Core",
+        "ColorfulSort.BoardView"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,20 @@
+{
+    "name": "ColorfulSort.UI",
+    "rootNamespace": "ColorfulSort.UI",
+    "references": [
+        "ColorfulSort.Content",
+        "ColorfulSort.Core",
+        "ColorfulSort.Meta",
+        "UnityEngine.UI",
+        "Unity.TextMeshPro"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

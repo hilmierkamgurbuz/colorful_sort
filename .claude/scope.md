@@ -17,12 +17,13 @@
   runs until every colour is gathered in one column → the level clears, the
   progress bar and the diorama advance, the next level is one tap away. When a
   board deadlocks, a booster (undo / add column / shuffle) buys the mistake
-  back, which is what turns a fail into a spend.
+  back. (A fail spends nothing — see Win/lose.)
 
 - **Win/lose:** Win when every colour occupies a single column and no column
   holds a mixture. Lose on deadlock — no legal move remains. No move counter,
-  no timer. (`OPEN-3`: whether deadlock fires an instant fail popup and costs a
-  heart is unconfirmed.)
+  no timer. Deadlock shows a fail popup and **costs nothing**: `OPEN-3` was
+  answered by dropping lives from the game entirely (D-042), so there is no
+  heart, no refill and no out-of-lives gate anywhere.
 
 - **Vertical-slice boundary:** one fully representative playable level, at
   release quality:
@@ -36,7 +37,7 @@
   - win and deadlock both detected and both showing their popup
   - all three boosters functional, including undo across a mystery reveal
   - gameplay HUD (level plaque + difficulty label + gear) and the Pause popup
-  - progress saved: current level, coins, hearts, booster charges
+  - progress saved: current level, coins, booster charges (no hearts — D-042)
   - one re-skin proven: swapping a symbol/colour pair edits one data asset and
     nothing else
 
@@ -44,7 +45,7 @@
   - Android + iOS, portrait, Unity 6000.0.80f1 / URP
   - the transcribed reference level set with per-level difficulty labels
     (`Normal` / `Hard` / `Super Hard`)
-  - main menu with coins, hearts, level button and the progress bar
+  - main menu with coins, level button and the progress bar
   - Settings and Pause popups exactly as the reference lays them out, plus
     Restore Purchase, Contact Us, Terms of Use, Privacy Policy
   - sound + vibration toggles, persisted

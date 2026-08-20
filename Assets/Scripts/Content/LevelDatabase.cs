@@ -15,39 +15,142 @@ namespace ColorfulSort.Content
         /// <summary>Scale bound from fingerprint.md: at most 2000 levels.</summary>
         public const int MaxLevels = 2000;
 
-        private static readonly LevelDefinition[] NoLevels = new LevelDefinition[0];
+        private static readonly LevelCodec.LevelRow[] NoRows = new LevelCodec.LevelRow[0];
 
-        [Tooltip("Levels in play order. The database does not renumber them; it orders them.")]
+        [Tooltip("Every level, in play order, as one compact JSON file. Written by the level editor; there are no level assets (D-085).")]
         [SerializeField]
-        private LevelDefinition[] levels;
+        private TextAsset levels;
 
-        public int Count => levels == null ? 0 : levels.Length;
+        /// <summary>
+        /// The file's rows, read once. Small structs rather than levels: two thousand of these is a
+        /// few hundred kilobytes, while two thousand levels would be two thousand ScriptableObjects
+        /// and every column under them.
+        /// </summary>
+        private LevelCodec.LevelRow[] rows;
 
-        public IReadOnlyList<LevelDefinition> Levels => levels ?? NoLevels;
+        /// <summary>Levels already asked for. A level is built the first time it is played, then kept.</summary>
+        private LevelDefinition[] built;
+
+        private bool read;
+
+        public int Count => Rows.Length;
+
+        /// <summary>
+        /// Every level, built. It is what the level editor and validation want and what the game never
+        /// asks for — reaching for it turns the whole file into objects, which is the exact cost
+        /// <see cref="ByOrdinal"/> exists to avoid.
+        /// </summary>
+        public IReadOnlyList<LevelDefinition> Levels
+        {
+            get
+            {
+                LevelCodec.LevelRow[] all = Rows;
+
+                for (int ordinal = 0; ordinal < all.Length; ordinal++)
+                {
+                    ByOrdinal(ordinal);
+                }
+
+                return built;
+            }
+        }
 
         /// <summary>The level at a position in play order, or null when the ordinal is past the end.</summary>
         public LevelDefinition ByOrdinal(int ordinal)
         {
-            LevelDefinition[] ordered = levels ?? NoLevels;
-            return ordinal < 0 || ordinal >= ordered.Length ? null : ordered[ordinal];
+            LevelCodec.LevelRow[] all = Rows;
+
+            if (ordinal < 0 || ordinal >= all.Length)
+            {
+                return null;
+            }
+
+            if (built[ordinal] != null)
+            {
+                return built[ordinal];
+            }
+
+            LevelDefinition level;
+            string error;
+
+            if (!LevelCodec.TryDecode(all[ordinal], out level, out error))
+            {
+                Debug.LogError("[" + name + "] level " + ordinal + " cannot be read: " + error, this);
+                return null;
+            }
+
+            built[ordinal] = level;
+            return level;
         }
 
-        /// <summary>Finds a level by the number on its plaque.</summary>
+        /// <summary>
+        /// Finds a level by the number on its plaque. It reads the *rows* rather than the levels, so
+        /// a search does not build every level on the way past — the row already carries the index,
+        /// which is the whole reason the file leads with it.
+        /// </summary>
         public bool TryFindByLevelIndex(int levelIndex, out LevelDefinition level)
         {
-            LevelDefinition[] ordered = levels ?? NoLevels;
+            LevelCodec.LevelRow[] all = Rows;
 
-            for (int ordinal = 0; ordinal < ordered.Length; ordinal++)
+            for (int ordinal = 0; ordinal < all.Length; ordinal++)
             {
-                if (ordered[ordinal] != null && ordered[ordinal].LevelIndex == levelIndex)
+                if (all[ordinal] != null && all[ordinal].i == levelIndex)
                 {
-                    level = ordered[ordinal];
-                    return true;
+                    level = ByOrdinal(ordinal);
+                    return level != null;
                 }
             }
 
             level = null;
             return false;
+        }
+
+        /// <summary>
+        /// The file, read the first time anything asks. Once, and remembered even when it fails — a
+        /// broken file would otherwise report itself on every call for the rest of the session.
+        /// </summary>
+        private LevelCodec.LevelRow[] Rows
+        {
+            get
+            {
+                if (read)
+                {
+                    return rows;
+                }
+
+                read = true;
+                rows = NoRows;
+
+                if (levels == null)
+                {
+                    Debug.LogError("[" + name + "] has no level file, so there is nothing to play.", this);
+                }
+                else
+                {
+                    LevelCodec.LevelRow[] parsed;
+                    string error;
+
+                    if (LevelCodec.TryReadFile(levels.text, out parsed, out error))
+                    {
+                        rows = parsed;
+                    }
+                    else
+                    {
+                        Debug.LogError("[" + name + "] " + levels.name + ": " + error, this);
+                    }
+                }
+
+                built = new LevelDefinition[rows.Length];
+                return rows;
+            }
+        }
+
+        /// <summary>Drops what has been read, so the editor sees a file it has just rewritten.</summary>
+        public void Reload()
+        {
+            read = false;
+            rows = null;
+            built = null;
         }
 
         /// <summary>
@@ -57,7 +160,7 @@ namespace ColorfulSort.Content
         /// </summary>
         public bool Validate(out string error)
         {
-            LevelDefinition[] ordered = levels ?? NoLevels;
+            LevelCodec.LevelRow[] ordered = Rows;
 
             if (ordered.Length > MaxLevels)
             {
@@ -75,7 +178,7 @@ namespace ColorfulSort.Content
                     return false;
                 }
 
-                int index = ordered[ordinal].LevelIndex;
+                int index = ordered[ordinal].i;
                 if (index <= previousIndex)
                 {
                     error = "Level " + index + " at slot " + ordinal + " does not come after level " + previousIndex +
@@ -92,6 +195,8 @@ namespace ColorfulSort.Content
 
         private void OnValidate()
         {
+            Reload();
+
             if (Count == 0)
             {
                 return;

@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d72752b8ce541dab46f662dc3e46a0, type: 3}
+  m_Name: Skin_Paw
+  m_EditorClassIdentifier: 
+  symbolMesh: {fileID: -8379310339722798561, guid: ae5ade1cba0584762a17a4d4394cdac0, type: 3}
+  sparkMesh: {fileID: 4300000, guid: 8e9ca74365d38498581dbe0507838dc7, type: 2}
+  material: {fileID: 2100000, guid: 102dd4c53b0c84fb293aa51cf692bf1c, type: 2}
+  symbolMaterial: {fileID: 2100000, guid: 83a7fa4bdbf5545d799fd6ddcfe1f8d2, type: 2}
+  uiColour: {r: 0.7216, g: 0.3176, b: 0.0784, a: 1}

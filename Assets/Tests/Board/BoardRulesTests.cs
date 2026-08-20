@@ -290,6 +290,141 @@ namespace ColorfulSort.Board.Tests
         }
 
         [Test]
+        public void ACompletedColour_CannotBeLiftedOrMoved()
+        {
+            // The state has to be *reached*, not authored: BoardState refuses a level that starts
+            // with a colour already gathered, so the fixture splits colour 1 and the move finishes it.
+            // Colour 2 is deliberately spread over two columns — a single block of it left alone
+            // would finish *that* colour too, and the last assertion here would be testing the
+            // wrong thing.
+            BoardSession session = TestBoards.Session(
+                TestBoards.Normal(2, 1),
+                TestBoards.Normal(3, 2, 1),
+                TestBoards.Normal(2),
+                TestBoards.Normal(2, 2));
+
+            Assert.That(session.TryMove(1, 0), Is.True, "the second block of colour 1 joins the first");
+
+            Assert.That(BoardRules.HoldsCompletedColour(session.State, 0), Is.True);
+            Assert.That(session.CanLift(0), Is.False, "a finished colour does not lift");
+            Assert.That(session.CanMove(0, 2), Is.False, "and it is no move's source, not even onto an empty column");
+            Assert.That(session.TryMove(0, 2), Is.False);
+
+            Assert.That(session.CanLift(1), Is.True, "the column it came from is untouched by the rule");
+        }
+
+        [Test]
+        public void AFullColumnOfMixedColours_StillLifts()
+        {
+            // The case deliberately *not* locked: full to the brim, but neither colour is done, so
+            // locking it would strand the blocks and make levels unsolvable.
+            BoardSession session = TestBoards.Session(
+                TestBoards.Normal(2, 1, 2),
+                TestBoards.Normal(2, 2, 1),
+                TestBoards.Normal(2));
+
+            Assert.That(BoardRules.HoldsCompletedColour(session.State, 0), Is.False);
+            Assert.That(session.CanLift(0), Is.True);
+            Assert.That(session.CanMove(0, 2), Is.True, "and it can still be unloaded onto the empty column");
+        }
+
+        [Test]
+        public void AColourShorterThanItsColumn_IsStillFinished()
+        {
+            // One single block of colour 1 on the whole board. Once it stands alone the colour is
+            // done even though its column has room, and that free cell was never usable: there is no
+            // other block of that colour left to land in it.
+            BoardSession session = TestBoards.Session(
+                TestBoards.Normal(2, 2, 1),
+                TestBoards.Normal(3, 2, 2),
+                TestBoards.Normal(2));
+
+            Assert.That(session.TryMove(0, 2), Is.True, "the lone block of colour 1 moves to the empty column");
+
+            BoardColumn column = session.State[2];
+            Assert.That(column.Count, Is.EqualTo(1));
+            Assert.That(column.FreeCells, Is.EqualTo(1), "room left, and still finished");
+            Assert.That(BoardRules.HoldsCompletedColour(session.State, 2), Is.True);
+            Assert.That(session.CanLift(2), Is.False);
+        }
+
+        [Test]
+        public void TheMoveThatCompletesAColour_LocksTheColumnItLandedIn()
+        {
+            BoardSession session = TestBoards.Session(
+                TestBoards.Normal(3, 1, 1),
+                TestBoards.Normal(3, 2, 1));
+
+            Assert.That(session.CanLift(1), Is.True);
+            Assert.That(session.TryMove(1, 0), Is.True, "the third block of colour 1 joins the other two");
+
+            Assert.That(BoardRules.HoldsCompletedColour(session.State, 0), Is.True);
+            Assert.That(session.CanLift(0), Is.False, "locked the instant it finished");
+        }
+
+        [Test]
+        public void UndoingTheMoveThatCompletedAColour_UnlocksTheColumn()
+        {
+            BoardSession session = TestBoards.Session(
+                TestBoards.Normal(3, 1, 1),
+                TestBoards.Normal(3, 2, 1));
+
+            session.TryMove(1, 0);
+            Assert.That(session.CanLift(0), Is.False);
+
+            Assert.That(session.Undo(), Is.True);
+            Assert.That(BoardRules.HoldsCompletedColour(session.State, 0), Is.False);
+            Assert.That(session.CanLift(0), Is.True, "the lock is a fact about the state, so undo lifts it exactly");
+        }
+
+        [Test]
+        public void LockingAFinishedColumn_NeverTakesTheLastMoveAway()
+        {
+            // The preflight feared a false deadlock; it cannot happen, and this pins why. A finished
+            // colour is *all* of that colour, so no other column can have a matching top — its only
+            // possible destination is an empty column. And an empty column serves every unlocked
+            // column equally, so if the lock removed the last move, every non-empty column would
+            // have to be finished already — which is the win.
+            // Colour 2 sits in two columns so that finishing colour 1 leaves a column that is
+            // genuinely unfinished — otherwise the single 2 left behind would finish its own colour
+            // and there would be no unlocked column left to make the point with.
+            BoardSession session = TestBoards.Session(
+                TestBoards.Normal(3, 1, 1),
+                TestBoards.Normal(3, 2, 1),
+                TestBoards.Normal(2),
+                TestBoards.Normal(2, 2));
+
+            session.TryMove(1, 0);
+
+            Assert.That(BoardRules.HoldsCompletedColour(session.State, 0), Is.True);
+            Assert.That(session.CanMove(0, 2), Is.False, "the finished column may not use the empty one");
+            Assert.That(BoardRules.HoldsCompletedColour(session.State, 1), Is.False, "and colour 2 is not done");
+            Assert.That(session.CanMove(1, 2), Is.True, "so that column can still use it");
+            Assert.That(BoardRules.HasAnyLegalMove(session.State), Is.True);
+            Assert.That(session.IsDeadlocked, Is.False);
+        }
+
+        [Test]
+        public void EveryColourFinished_ReadsAsWonRatherThanDeadlocked()
+        {
+            // The end state, reached by playing: both colours locked and no move left. That has to be
+            // the win, never the loss — a Fail popup here would be the worst bug this rule could grow.
+            BoardSession session = TestBoards.Session(
+                TestBoards.Normal(2, 1, 2),
+                TestBoards.Normal(2, 1),
+                TestBoards.Normal(2, 2));
+
+            Assert.That(session.TryMove(0, 2), Is.True, "the 2 on top joins the other 2");
+            Assert.That(session.TryMove(0, 1), Is.True, "and the 1 underneath joins the other 1");
+
+            Assert.That(BoardRules.HoldsCompletedColour(session.State, 1), Is.True);
+            Assert.That(BoardRules.HoldsCompletedColour(session.State, 2), Is.True);
+            Assert.That(BoardRules.HasAnyLegalMove(session.State), Is.False);
+            Assert.That(session.IsWon, Is.True);
+            Assert.That(session.IsDeadlocked, Is.False);
+        }
+
+        [Test]
         public void IsDeadlock_IsTrueWhenNoLegalMoveRemains()
         {
             // Two full columns, mismatched tops, nowhere to put anything.

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ColorfulSort.Board
 {
@@ -21,6 +22,12 @@ namespace ColorfulSort.Board
     /// </summary>
     public sealed class BoardSession
     {
+        private static readonly CellData[] NoCells = new CellData[0];
+
+        // Reused by the shuffle so a booster press allocates nothing beyond its own record.
+        private readonly List<CellRef> _shuffleCells = new List<CellRef>(64);
+        private readonly List<BlockColourId> _shuffleColours = new List<BlockColourId>(64);
+
         private bool _isApplying;
 
         /// <summary>
@@ -164,6 +171,179 @@ namespace ColorfulSort.Board
         }
 
         /// <summary>
+        /// Whether the add-column booster has anywhere to put one. False at the 16-column
+        /// ceiling (fingerprint.md), which is what greys the button out rather than letting
+        /// a press be swallowed.
+        /// </summary>
+        public bool CanAddColumn => State.ColumnCount < LevelData.MaxColumns;
+
+        /// <summary>Whether a shuffle would rearrange anything: it needs two movable cells.</summary>
+        public bool CanShuffle => CollectShuffleable(null) >= 2;
+
+        public bool TryAddColumn() => TryAddColumn(out _);
+
+        /// <summary>
+        /// Appends one empty column, as the add-column booster does. Its capacity is the
+        /// largest already on the board rather than a number chosen here: a level's columns
+        /// share a capacity, so the booster cannot hand the player a column taller or
+        /// shorter than the puzzle it joins.
+        /// </summary>
+        /// <returns>False at the column ceiling; the board is then untouched.</returns>
+        public bool TryAddColumn(out BoardMove move)
+        {
+            move = null;
+            RequireNotReentrant();
+
+            if (!CanAddColumn)
+            {
+                return false;
+            }
+
+            int capacity = 0;
+            for (int column = 0; column < State.ColumnCount; column++)
+            {
+                capacity = Math.Max(capacity, State[column].Capacity);
+            }
+
+            if (capacity < 1)
+            {
+                return false;
+            }
+
+            var record = new BoardMove(MoveKind.AddColumn, Random.Cursor);
+
+            _isApplying = true;
+            try
+            {
+                State.AppendColumn(new BoardColumn(new ColumnData(ColumnKind.Normal, capacity, NoCells, 0, BlockColourId.None)));
+
+                // No completions to apply: an empty column cannot finish a colour. What it
+                // does change is whether the board is deadlocked, and that is computed from
+                // state on every read, so nothing here has to say so.
+                History.Record(record);
+                move = record;
+
+                RaiseMoveEvents(record);
+            }
+            finally
+            {
+                _isApplying = false;
+            }
+
+            return true;
+        }
+
+        public bool TryShuffle() => TryShuffle(out _);
+
+        /// <summary>
+        /// Rearranges the colours of every movable cell among themselves — the shuffle
+        /// booster, and the attempt RNG's only consumer (D-002).
+        /// <para>
+        /// It rearranges, it does not redistribute: each column keeps exactly as many blocks
+        /// as it had, and hidden cells keep what they hold. A shuffle that completes a colour
+        /// completes it, with every consequence — ice thaws and covers open through the same
+        /// recorded fields a plain move fills, because a shuffle is a move like any other
+        /// (rules/gameplay.md).
+        /// </para>
+        /// </summary>
+        /// <returns>False when there is nothing to rearrange; the board is then untouched.</returns>
+        public bool TryShuffle(out BoardMove move)
+        {
+            move = null;
+            RequireNotReentrant();
+
+            if (CollectShuffleable(_shuffleCells) < 2)
+            {
+                return false;
+            }
+
+            var record = new BoardMove(MoveKind.Shuffle, Random.Cursor);
+
+            _isApplying = true;
+            try
+            {
+                _shuffleColours.Clear();
+
+                for (int i = 0; i < _shuffleCells.Count; i++)
+                {
+                    CellRef cell = _shuffleCells[i];
+                    BlockColourId colour = State.ColumnFor(cell.Column).ColourAt(cell.Cell);
+
+                    _shuffleColours.Add(colour);
+
+                    // The before-state is written down before a single draw is made, so undo
+                    // restores it rather than recomputing it (D-041).
+                    record.AddShuffledCell(cell, colour);
+                }
+
+                // Fisher-Yates, which is the permutation every element is equally likely to
+                // land in, in exactly n-1 draws — a fixed, replayable number of them.
+                for (int i = _shuffleColours.Count - 1; i >= 1; i--)
+                {
+                    int j = Random.NextInt(i + 1);
+                    BlockColourId swapped = _shuffleColours[i];
+                    _shuffleColours[i] = _shuffleColours[j];
+                    _shuffleColours[j] = swapped;
+                }
+
+                for (int i = 0; i < _shuffleCells.Count; i++)
+                {
+                    CellRef cell = _shuffleCells[i];
+                    State.ColumnFor(cell.Column).SetColourAt(cell.Cell, _shuffleColours[i]);
+                }
+
+                ApplyCompletions(record);
+
+                History.Record(record);
+                move = record;
+
+                RaiseMoveEvents(record);
+            }
+            finally
+            {
+                _isApplying = false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// The cells a shuffle may touch: occupied, readable, and in a column that is not
+        /// locked. Hidden cells are excluded because what sits under a '?' was fixed when the
+        /// level opened and the solvability verdict was computed with it (D-011); locked
+        /// columns are excluded because nothing may enter or leave them.
+        /// </summary>
+        /// <param name="into">Filled when given; pass null just to count.</param>
+        private int CollectShuffleable(List<CellRef> into)
+        {
+            into?.Clear();
+            int found = 0;
+
+            for (int column = 0; column < State.ColumnCount; column++)
+            {
+                BoardColumn candidate = State[column];
+
+                if (candidate.IsLocked)
+                {
+                    continue;
+                }
+
+                for (int cell = 0; cell < candidate.Count; cell++)
+                {
+                    if (candidate.IsHiddenAt(cell))
+                    {
+                        continue;
+                    }
+
+                    found++;
+                    into?.Add(new CellRef(column, cell));
+                }
+            }
+
+            return found;
+        }
+
+        /// <summary>
         /// Reverts the last recorded move exactly: the side effects come undone in
         /// the reverse of the order they were applied, then the blocks travel back,
         /// then the RNG cursor rewinds. Nothing about the board is left out — cells,
@@ -210,12 +390,35 @@ namespace ColorfulSort.Board
                     State.UnmarkCompleted(completed[i]);
                 }
 
-                BoardColumn source = State.ColumnFor(move.FromColumn);
-                BoardColumn destination = State.ColumnFor(move.ToColumn);
-                for (int i = 0; i < move.Count; i++)
+                switch (move.Kind)
                 {
-                    destination.Pop();
-                    source.Push(move.Colour);
+                    case MoveKind.AddColumn:
+                        // Undo is last-in-first-out, so every move that put a block in this
+                        // column has already been reverted and it is empty again. RemoveLastColumn
+                        // stops loudly if it is not, rather than deleting blocks.
+                        State.RemoveLastColumn();
+                        break;
+
+                    case MoveKind.Shuffle:
+                        var shuffled = move.ShuffledCells;
+                        for (int i = shuffled.Count - 1; i >= 0; i--)
+                        {
+                            ShuffledCell entry = shuffled[i];
+                            State.ColumnFor(entry.Cell.Column).SetColourAt(entry.Cell.Cell, entry.PreviousColour);
+                        }
+
+                        break;
+
+                    default:
+                        BoardColumn source = State.ColumnFor(move.FromColumn);
+                        BoardColumn destination = State.ColumnFor(move.ToColumn);
+                        for (int i = 0; i < move.Count; i++)
+                        {
+                            destination.Pop();
+                            source.Push(move.Colour);
+                        }
+
+                        break;
                 }
 
                 Random.Rewind(move.RngCursorBefore);

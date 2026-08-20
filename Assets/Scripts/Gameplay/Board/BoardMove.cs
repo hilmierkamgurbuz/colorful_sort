@@ -24,6 +24,33 @@ namespace ColorfulSort.Board
         public override string ToString() => "(" + Column + "," + Cell + ")";
     }
 
+    /// <summary>What kind of mutation a recorded move is. A plain move is a <see cref="Run"/>.</summary>
+    public enum MoveKind
+    {
+        /// <summary>The move rule: a run of one colour lifted from a column and dropped on another.</summary>
+        Run,
+
+        /// <summary>The add-column booster: one empty column appended to the board.</summary>
+        AddColumn,
+
+        /// <summary>The shuffle booster: the visible cells rearranged among themselves.</summary>
+        Shuffle,
+    }
+
+    /// <summary>One cell a shuffle touched, and what it held before.</summary>
+    public readonly struct ShuffledCell
+    {
+        public readonly CellRef Cell;
+
+        public readonly BlockColourId PreviousColour;
+
+        public ShuffledCell(CellRef cell, BlockColourId previousColour)
+        {
+            Cell = cell;
+            PreviousColour = previousColour;
+        }
+    }
+
     /// <summary>
     /// One recorded board mutation: the run that moved, and every side effect it
     /// caused. This is the whole undo contract — replaying these fields backwards
@@ -40,20 +67,43 @@ namespace ColorfulSort.Board
         private static readonly CellRef[] NoCells = new CellRef[0];
         private static readonly int[] NoColumns = new int[0];
         private static readonly BlockColourId[] NoColours = new BlockColourId[0];
+        private static readonly ShuffledCell[] NoShuffledCells = new ShuffledCell[0];
 
         private List<CellRef> _revealedCells;
         private List<int> _thawedColumns;
         private List<int> _uncoveredColumns;
         private List<BlockColourId> _completedColours;
+        private List<ShuffledCell> _shuffledCells;
 
         internal BoardMove(int fromColumn, int toColumn, int count, BlockColourId colour, int rngCursorBefore)
         {
+            Kind = MoveKind.Run;
             FromColumn = fromColumn;
             ToColumn = toColumn;
             Count = count;
             Colour = colour;
             RngCursorBefore = rngCursorBefore;
         }
+
+        /// <summary>
+        /// A booster's move. Neither kind moves a run, so the run fields stay at their
+        /// no-column sentinel rather than carrying a number that means nothing.
+        /// </summary>
+        internal BoardMove(MoveKind kind, int rngCursorBefore)
+        {
+            Kind = kind;
+            FromColumn = NoColumn;
+            ToColumn = NoColumn;
+            Count = 0;
+            Colour = BlockColourId.None;
+            RngCursorBefore = rngCursorBefore;
+        }
+
+        /// <summary>What the run fields read when a move is not a run.</summary>
+        public const int NoColumn = -1;
+
+        /// <summary>Which of the three mutations this is. Undo branches on it.</summary>
+        public MoveKind Kind { get; }
 
         public int FromColumn { get; }
 
@@ -103,9 +153,38 @@ namespace ColorfulSort.Board
             (_completedColours ?? (_completedColours = new List<BlockColourId>(2))).Add(colour);
         }
 
+        /// <summary>
+        /// Every cell a shuffle rearranged, with the colour it held first.
+        /// <para>
+        /// The preflight for this task assumed the opposite — that a shuffle would store
+        /// nothing and undo would rewind the RNG and recompute the permutation, since the
+        /// seed determines it. Writing it made the contradiction plain: that design is
+        /// exactly the one the same preflight named as its worst risk, an undo that is off
+        /// by one draw and restores a board which looks right and is not. A recorded
+        /// before-state cannot be off by anything. It costs one array of at most 128
+        /// entries per shuffle, at booster frequency (D-041).
+        /// </para>
+        /// </summary>
+        public IReadOnlyList<ShuffledCell> ShuffledCells => _shuffledCells ?? (IReadOnlyList<ShuffledCell>)NoShuffledCells;
+
+        internal void AddShuffledCell(CellRef cell, BlockColourId previousColour)
+        {
+            (_shuffledCells ?? (_shuffledCells = new List<ShuffledCell>(32))).Add(new ShuffledCell(cell, previousColour));
+        }
+
         public override string ToString()
         {
-            return Count + "x" + Colour + " " + FromColumn + "->" + ToColumn;
+            switch (Kind)
+            {
+                case MoveKind.AddColumn:
+                    return "add column";
+
+                case MoveKind.Shuffle:
+                    return "shuffle " + ShuffledCells.Count + " cell(s)";
+
+                default:
+                    return Count + "x" + Colour + " " + FromColumn + "->" + ToColumn;
+            }
         }
     }
 }

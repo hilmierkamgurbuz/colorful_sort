@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77d72752b8ce541dab46f662dc3e46a0, type: 3}
+  m_Name: Skin_Cloud
+  m_EditorClassIdentifier: 
+  symbolMesh: {fileID: -5320426955775846113, guid: a8affd07530484041a898ed27c42ec1c, type: 3}
+  sparkMesh: {fileID: 4300000, guid: bc906d2a0dd374a85b642660e15f12bf, type: 2}
+  material: {fileID: 2100000, guid: 908024207566d44a8b29604e55ceb615, type: 2}
+  symbolMaterial: {fileID: 2100000, guid: 648c1c124522a498b8f8650308ac0a7b, type: 2}
+  uiColour: {r: 0.3569, g: 0.2314, b: 0.9098, a: 1}

@@ -53,6 +53,28 @@ namespace ColorfulSort.Board.Tests
         }
 
         [Test]
+        public void Undo_OfTheMoveThatFinishedAColour_MakesItPlayableAgain()
+        {
+            // The lock on a finished colour (D-056) is read off the state, not remembered, so undo
+            // has nothing extra to reverse — and that is the claim worth pinning: the fingerprint
+            // comes back identical *and* the column lifts again.
+            BoardSession session = TestBoards.Session(
+                TestBoards.Normal(3, 1, 1),
+                TestBoards.Normal(3, 2, 1),
+                TestBoards.Normal(2, 2));
+
+            string before = TestBoards.Fingerprint(session);
+            Assert.That(session.CanLift(0), Is.True);
+
+            Assert.That(session.TryMove(1, 0), Is.True, "colour 1 is gathered");
+            Assert.That(session.CanLift(0), Is.False, "and the column is locked");
+
+            Assert.That(session.Undo(), Is.True);
+            Assert.That(TestBoards.Fingerprint(session), Is.EqualTo(before));
+            Assert.That(session.CanLift(0), Is.True, "the lock came back off with the state");
+        }
+
+        [Test]
         public void TryMove_RevealingAMysteryCell_IsUndoneBackToHidden()
         {
             BoardSession session = TestBoards.Session(

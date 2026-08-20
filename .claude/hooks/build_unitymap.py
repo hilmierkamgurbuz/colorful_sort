@@ -153,6 +153,18 @@ def main() -> int:
         if f"source-sig:{sig}" in head0:
             return 0          # nothing on disk moved; leave the file (and its generator stamp) alone
 
+        # An editor export writes `source-sig:editor-export`, so the check above can
+        # never recognise one and this fallback would replace a richer map with a poorer
+        # one at the end of every turn — reporting package scripts it cannot resolve as
+        # MISSING SCRIPT. If the map file is newer than every scene and prefab, nothing
+        # moved since it was written, whichever generator wrote it.
+        try:
+            newest = max((os.path.getmtime(t) for t in targets), default=0.0)
+            if os.path.getmtime(dest) >= newest:
+                return 0
+        except OSError:
+            pass              # cannot compare mtimes; fall through and rebuild
+
     kept_notes = []
     if os.path.isfile(dest):
         with open(dest, encoding="utf-8") as f:
