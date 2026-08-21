@@ -14,8 +14,8 @@ maps and never invents a name.
 | Content | content, tests | Assets/Scripts/Content/ColorfulSort.Content.asmdef, Assets/Scripts/Content/LevelCodec.cs (+10) | - | - | Assets/Data/Blocks, Assets/Data/Levels | OK |
 | Core | core, tests | Assets/Scripts/Core/AttemptSeedSource.cs, Assets/Scripts/Core/ColorfulSort.Core.asmdef (+12) | Boot, Menu, Game | - | Assets/Data/Config | OK |
 | Meta | meta, tests | Assets/Scripts/Meta/ColorfulSort.Meta.asmdef, Assets/Scripts/Meta/PlayerEconomy.cs (+7) | - | - | Assets/Data/Config | OK |
-| Tooling | editor | Assets/Editor/ArtImportPass.cs, Assets/Editor/BlockSkinFactory.cs (+6) | - | - | - | OK |
+| Tooling | editor | Assets/Editor/ArtImportPass.cs, Assets/Editor/BlockSkinFactory.cs (+5) | - | - | - | OK |
 | UI | ui | Assets/Scripts/UI/ColorfulSort.UI.asmdef, Assets/Scripts/UI/PopupHost.cs (+12) | Boot, Menu, Game, UI | Popup_Pause, Popup_Settings, Popup_Win, Popup_Fail, Popup_BoosterShop, BoosterButton | Assets/Data/Config | OK |
 
 ## Gaps
-- 1 flagged codemap line(s) excluded from this table (STALE)
+- 2 flagged codemap line(s) excluded from this table (STALE)

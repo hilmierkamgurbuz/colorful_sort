@@ -824,7 +824,7 @@ namespace ColorfulSort.EditorTools
 
             if (cell < cells.arraySize)
             {
-                WriteCell(cells.GetArrayElementAtIndex(cell));
+                WriteCell(column, cells.GetArrayElementAtIndex(cell));
                 return;
             }
 
@@ -832,7 +832,7 @@ namespace ColorfulSort.EditorTools
 
             for (int index = first; index <= cell; index++)
             {
-                WriteCell(cells.GetArrayElementAtIndex(index));
+                WriteCell(column, cells.GetArrayElementAtIndex(index));
             }
         }
 
@@ -845,12 +845,46 @@ namespace ColorfulSort.EditorTools
 
             for (int index = first; index < capacity; index++)
             {
-                WriteCell(cells.GetArrayElementAtIndex(index));
+                WriteCell(column, cells.GetArrayElementAtIndex(index));
             }
         }
 
-        private void WriteCell(SerializedProperty cell)
+        /// <summary>
+        /// Writes one cell — and, when the brush hides it, makes the column a kind that is
+        /// allowed to hide it.
+        /// <para>
+        /// The promotion is not a guess about what the author meant, it is the only reading
+        /// available: `ColumnModifiers.RevealsTopWhenExposed` is true for `Mystery` alone, an
+        /// `Ice` column holds no authored cells at all, and a `Covered` one hides *every* cell
+        /// behind a key colour. So "a playable column with hidden cells under a readable top"
+        /// has exactly one spelling, and the brush now writes it rather than writing a `Normal`
+        /// column the board will refuse to open.
+        /// </para>
+        /// <para>
+        /// This is D-097's fault taken one step earlier. That decision answered the same bug by
+        /// naming every unshippable level at save time, and the news still arrives after the
+        /// mistake is made: four more levels reached the file — and a phone build — the next day
+        /// (D-102). `ReportUnshippable` stays, and so does saving being unblocked; what changes
+        /// is that the brush can no longer author the state it reports.
+        /// </para>
+        /// <para>
+        /// Only `Normal` is promoted. `Covered` and `Ice` are kinds an author selects on purpose
+        /// and they carry their own data (a key colour, a thaw count) that a brush stroke has no
+        /// business rewriting. And a `Mystery` column with no hidden cells left on it is not a
+        /// mess to clean up: it plays and draws exactly as a `Normal` one, since the `?` lives on
+        /// the brick and there is no Mystery column prefab — which is what makes an accidental
+        /// promotion harmless rather than something to warn about.
+        /// </para>
+        /// </summary>
+        private void WriteCell(SerializedProperty column, SerializedProperty cell)
         {
+            SerializedProperty kind = column.FindPropertyRelative(PathKind);
+
+            if (paintHidden && (ColumnKind)kind.enumValueIndex == ColumnKind.Normal)
+            {
+                kind.enumValueIndex = (int)ColumnKind.Mystery;
+            }
+
             cell.FindPropertyRelative(PathColourId).intValue = paintColourId;
             cell.FindPropertyRelative(PathHidden).boolValue = paintHidden;
         }
